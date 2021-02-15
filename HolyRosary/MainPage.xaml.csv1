@@ -1,0 +1,265 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
+
+
+namespace HolyRosary
+{
+    // Learn more about making custom code visible in the Xamarin.Forms previewer
+    // by visiting https://aka.ms/xamarinforms-previewer
+    [DesignTimeVisible(false)]
+    public partial class MainPage : ContentPage
+    {
+        //SKBitmap bitmap;
+        SKSurface surface;
+        SKCanvas canvas;
+        int ci = 0; //счетчик бусинок
+        bool NextPressed = false; //button Next is not pressing
+        float cx = 0, cy = 0; //canvas size 
+        float d = 0; // diametr
+
+        public int[,] roll = new int[60, 3];
+
+
+
+        SKPaint circleFill = new SKPaint
+        {
+            IsAntialias = true,
+            Style = SKPaintStyle.Fill,
+            Color = SKColors.LightBlue
+        };
+        SKPaint circleFill2 = new SKPaint
+        {
+            IsAntialias = true,
+            Style = SKPaintStyle.Fill,
+            Color = SKColors.Blue
+        };
+
+
+        public MainPage()
+        {
+            // изициализируем массив точек - центр 
+            roll[0, 0] = 7; roll[0, 1] = 35; roll[0, 2] = 1;
+            roll[1, 0] = 7; roll[1, 1] = 32; roll[1, 2] = 2;
+            roll[2, 0] = 7; roll[2, 1] = 30; roll[2, 2] = 2;
+            roll[3, 0] = 7; roll[3, 1] = 28; roll[3, 2] = 2;
+            roll[4, 0] = 7; roll[4, 1] = 25; roll[4, 2] = 1;
+            // 1
+            roll[5, 0] = 4; roll[5, 1] = 24; roll[5, 2] = 2;
+            roll[6, 0] = 4; roll[6, 1] = 22; roll[6, 2] = 2;
+            roll[7, 0] = 4; roll[7, 1] = 20; roll[7, 2] = 2;
+            roll[8, 0] = 4; roll[8, 1] = 18; roll[8, 2] = 2;
+            roll[9, 0] = 4; roll[9, 1] = 16; roll[9, 2] = 2;
+            roll[10, 0] = 4; roll[10, 1] = 14; roll[10, 2] = 2;
+            roll[11, 0] = 4; roll[11, 1] = 12; roll[11, 2] = 2;
+            roll[12, 0] = 4; roll[12, 1] = 10; roll[12, 2] = 2;
+            roll[13, 0] = 4; roll[13, 1] = 8; roll[13, 2] = 2;
+            roll[14, 0] = 4; roll[14, 1] = 6; roll[14, 2] = 2;
+            //1-2
+            roll[15, 0] = 7; roll[15, 1] = 5; roll[15, 2] = 1;
+            //2
+            roll[16, 0] = 10; roll[16, 1] = 5; roll[16, 2] = 2;
+            roll[17, 0] = 12; roll[17, 1] = 5; roll[17, 2] = 2;
+            roll[18, 0] = 14; roll[18, 1] = 5; roll[18, 2] = 2;
+            roll[19, 0] = 16; roll[19, 1] = 5; roll[19, 2] = 2;
+            roll[20, 0] = 18; roll[20, 1] = 5; roll[20, 2] = 2;
+            roll[21, 0] = 20; roll[21, 1] = 5; roll[21, 2] = 2;
+            roll[22, 0] = 22; roll[22, 1] = 6; roll[22, 2] = 2;
+            roll[23, 0] = 22; roll[23, 1] = 8; roll[23, 2] = 2;
+            roll[24, 0] = 22; roll[24, 1] = 10; roll[24, 2] = 2;
+            roll[25, 0] = 22; roll[25, 1] = 12; roll[25, 2] = 2;
+            //2-3
+            roll[26, 0] = 22; roll[26, 1] = 15; roll[26, 2] = 1;
+            //3
+            roll[27, 0] = 22; roll[27, 1] = 18; roll[27, 2] = 2;
+            roll[28, 0] = 22; roll[28, 1] = 20; roll[28, 2] = 2;
+            roll[29, 0] = 22; roll[29, 1] = 22; roll[29, 2] = 2;
+            roll[30, 0] = 22; roll[30, 1] = 24; roll[30, 2] = 2;
+            roll[31, 0] = 22; roll[31, 1] = 26; roll[31, 2] = 2;
+            roll[32, 0] = 22; roll[32, 1] = 28; roll[32, 2] = 2;
+            roll[33, 0] = 22; roll[33, 1] = 30; roll[33, 2] = 2;
+            roll[34, 0] = 22; roll[34, 1] = 32; roll[34, 2] = 2;
+            roll[35, 0] = 22; roll[35, 1] = 34; roll[35, 2] = 2;
+            roll[36, 0] = 22; roll[36, 1] = 36; roll[36, 2] = 2;
+
+            //3-4
+            roll[37, 0] = 22; roll[37, 1] = 39; roll[37, 2] = 1;
+            ////4
+            roll[38, 0] = 20; roll[38, 1] = 41; roll[38, 2] = 2;
+            roll[39, 0] = 18; roll[39, 1] = 41; roll[39, 2] = 2;
+            roll[40, 0] = 16; roll[40, 1] = 41; roll[40, 2] = 2;
+            roll[41, 0] = 14; roll[41, 1] = 41; roll[41, 2] = 2;
+            roll[42, 0] = 12; roll[42, 1] = 40; roll[42, 2] = 2;
+            roll[43, 0] = 11; roll[43, 1] = 38; roll[43, 2] = 2;
+            roll[44, 0] = 11; roll[44, 1] = 36; roll[44, 2] = 2;
+            roll[45, 0] = 11; roll[45, 1] = 34; roll[45, 2] = 2;
+            roll[46, 0] = 12; roll[46, 1] = 32; roll[46, 2] = 2;
+            roll[47, 0] = 14; roll[47, 1] = 31; roll[47, 2] = 2;
+            ////4-5
+            roll[48, 0] = 17; roll[48, 1] = 31; roll[48, 2] = 1;
+            ////5
+            roll[49, 0] = 18; roll[49, 1] = 28; roll[49, 2] = 2;
+            roll[50, 0] = 18; roll[50, 1] = 26; roll[50, 2] = 2;
+            roll[51, 0] = 18; roll[51, 1] = 24; roll[51, 2] = 2;
+            roll[52, 0] = 18; roll[52, 1] = 22; roll[52, 2] = 2;
+            roll[53, 0] = 18; roll[53, 1] = 20; roll[53, 2] = 2;
+            roll[54, 0] = 16; roll[54, 1] = 20; roll[54, 2] = 2;
+            roll[55, 0] = 14; roll[55, 1] = 20; roll[55, 2] = 2;
+            roll[56, 0] = 12; roll[56, 1] = 20; roll[56, 2] = 2;
+            roll[57, 0] = 11; roll[57, 1] = 22; roll[57, 2] = 2;
+            roll[58, 0] = 10; roll[58, 1] = 24; roll[58, 2] = 2;
+            //
+            InitializeComponent();
+        }
+        private void picker1_change(object sender, EventArgs e)
+        {
+            //удалить старые записи, если они есть
+            while (picker2.Items.Count != 0)
+            {
+                picker2.Items.Clear();
+            }
+            if (picker1.SelectedIndex == 0) //тайны славные
+            {
+                picker2.Items.Add("Таинство первое. Воскресение");
+                picker2.Items.Add("Таинство второе. Вознесение");
+                picker2.Items.Add("Таинство третье. Сошествие Святого Духа");
+                picker2.Items.Add("Таинство четвертое. Успение");
+                picker2.Items.Add("Таинство пятое. Коронация");
+            }
+            else if (picker1.SelectedIndex == 1) //тайны радостные
+            {
+                picker2.Items.Add("Таинство первое. Благовествование");
+                picker2.Items.Add("Таинство второе. Посещение Елисаветы");
+                picker2.Items.Add("Таинство третье. Рождение Ииуса Христа");
+                picker2.Items.Add("Таинство четвертое. Сретение");
+                picker2.Items.Add("Таинство пятое. Обретение Иисуса в Храме");
+            }
+            else if (picker1.SelectedIndex == 2) //тайны скорбные
+            {
+                picker2.Items.Add("Таинство первое. Борение в Гефсиманском саду");
+                picker2.Items.Add("Таинство второе. Бичевание в колоннаде");
+                picker2.Items.Add("Таинство третье. Возложение тернового венка");
+                picker2.Items.Add("Таинство четвертое. Крестный путь");
+                picker2.Items.Add("Таинство пятое. Распятие");
+            }
+            else  //тайны светлые
+            {
+                picker2.Items.Add("Таинство первое. Крещение в Иордане");
+                picker2.Items.Add("Таинство второе. Свадьба в Канне");
+                picker2.Items.Add("Таинство третье. Нагорная проповедь");
+                picker2.Items.Add("Таинство четвертое. Преображение");
+                picker2.Items.Add("Таинство пятое. Установление Эвхористии");
+            }
+            picker2.SelectedIndex = 0;
+        }
+        private void Button1_Clicked(object b, EventArgs e)
+        {
+            //Image image1 = new Image { Source = "img41.jpg" };
+            //StackLayoutPic.
+            if (ci == 0)
+            {
+                img1.Source = "img41.jpg";
+                img1.Aspect = Aspect.Fill;
+                // рисование линии ружанца
+
+                ci++;
+            }
+            else {
+                //обновляем рисунок
+                NextPressed = true;
+                canvasview.InvalidateSurface();
+                //NextPressed = false;
+                ci++;
+                 }
+        }
+        private void SetingButton_Cliked(object b, EventArgs e)
+        {
+            
+        }
+
+        private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
+        {
+
+            //Здесь можно рисовать
+           
+                // получаем текущую поверхность из аргументов
+                surface = e.Surface;
+                // Получаем холст на котором будет рисовать
+                canvas = surface.Canvas;    
+                //var surfaceize = e.Info.Size;
+                cx = e.Info.Width;
+                cy = e.Info.Height;
+
+            if (!NextPressed) // Netx did not press
+            {
+                d = 1+(int) cx / 25;
+                //r = (int) d / 2;
+                // Очищаем холст
+                canvas.Clear(SKColors.AliceBlue);
+                canvas.Save();
+            }
+            else
+            if (ci <= 20)
+            {
+                //canvas.Save();
+                var pathStroke = new SKPaint
+                {
+                    IsAntialias = true,
+                    Style = SKPaintStyle.Stroke,
+                    Color = SKColors.Green,
+                    StrokeWidth = 5
+                };
+
+                // Создаем путь
+                var path = new SKPath();
+                path.MoveTo(3*d, 41*d);
+                path.LineTo(7*d, 37*d);
+                path.MoveTo(5*d, 37*d);
+                path.LineTo(7*d, 39*d);
+                path.MoveTo(7 * d, 37 * d);
+                //1
+                path.LineTo(7 * d, 25 * d);
+                path.LineTo(7 * d, 25 * d);
+                path.LineTo(4 * d, 24 * d);
+                path.LineTo(4 * d, 6 * d);
+                path.LineTo(6 * d, 5 * d);
+                path.LineTo(21 * d, 5 * d);
+                path.LineTo(22 * d, 6 * d);
+                path.LineTo(22 * d, 39 * d);
+                path.LineTo(20 * d, 41 * d);
+                path.LineTo(13 * d, 41 * d);
+                path.LineTo(11 * d, 39 * d);
+                path.LineTo(11 * d, 33 * d);
+                path.LineTo(13 * d, 31 * d);
+                path.LineTo(17 * d, 31 * d);
+                path.LineTo(18 * d, 28 * d);
+                path.LineTo(18 * d, 20 * d);
+                path.LineTo(12 * d, 20 * d);
+                path.LineTo(10 * d, 24 * d);
+                path.LineTo(7 * d, 25 * d);
+
+                // Рисуем путь
+                canvas.DrawPath(path, pathStroke);
+
+                // 
+                for (int i = 0; i< 59; i++)
+                {
+                    if (roll[i,2] == 2)
+                    canvas.DrawCircle(roll[i, 0]*d, roll[i, 1]*d, d, circleFill);
+                    else
+                    canvas.DrawCircle(roll[i, 0] * d, roll[i, 1] * d, d, circleFill2);
+                }
+                //canvas.Restore();
+
+            }
+            
+        }
+       
+    }
+}

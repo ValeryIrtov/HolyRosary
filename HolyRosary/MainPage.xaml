@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+
+             mc:Ignorable="d"
+             x:Class="HolyRosary.MainPage">
+
+    <StackLayout x:Name="StackLayoutPic">
+        <StackLayout x:Name="stackLayout2" Orientation="Horizontal" HorizontalOptions="Fill">
+           <Label Text="Holy Rosary" HorizontalOptions="StartAndExpand" VerticalOptions="Start" FontSize="Large" HorizontalTextAlignment="Center" />
+            <Button x:Name="setingButton" Text="SET" HorizontalOptions="Start" Clicked="SetingButton_Cliked"/>
+        </StackLayout>
+        <!-- Place new controls here -->
+     
+        <Picker x:Name="picker1" SelectedIndexChanged="picker1_change"> 
+        </Picker>
+           
+        <Picker x:Name="picker2" VerticalOptions="StartAndExpand" >
+        </Picker>
+
+        <Grid x:Name="Grid1" RowSpacing="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+            <!--<BoxView x:Name="BoxView1"  Color="Red" Grid.Column="0" Grid.Row="0" /> -->
+            <views:SKCanvasView x:Name="canvasview" PaintSurface="OnPainting" />
+            <BoxView x:Name ="BoxViev1" Color="Black" Grid.Column="1" Grid.Row="0" />
+            <Image x:Name="img1" Source="img1.jpg" VerticalOptions= "FillAndExpand"  Grid.Column="1" Grid.Row="0"/> 
+        </Grid>
+           
+
+ <!--<Label x:Name="Label1" Text="" 
+           HorizontalOptions="Start"
+           VerticalOptions="Start" />-->
+<views:SKCanvasView x:Name="canvasview2" PaintSurface="OnPainting2" />
+        
+<Button x:Name ="Button1" Text=">>" VerticalOptions="End" Clicked="Button1_Clicked" />
+
+
+
+    </StackLayout>
+
+</ContentPage>
