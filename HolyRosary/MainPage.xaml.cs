@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using SkiaSharp;
@@ -29,7 +30,9 @@ namespace HolyRosary
         public int[,] roll = new int[60, 3];
         public int currentsymbol = 0; //счетчик в тексте молитвы
         char[] tmp = new char[41]; //отображаемый текст молитвы
-
+       
+        static CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken token = cts.Token;
         //кисть для основных бусинок
         SKPaint circleFill = new SKPaint
         {
@@ -53,14 +56,23 @@ namespace HolyRosary
         };
 
         
-        string pray1 = "Во имя Отца и Сына и Святого Духа. Аминь";
-        string pray2 = "Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего," +
+        string pray1 = "    Во имя Отца и Сына и Святого Духа. Аминь.";
+        string pray2 = "    Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего," +
             "который был зачат от Духа Святого, родился от Девы Марии, страдал при Понтии Пилате, был распят,умер и погребен; сошел в ад;" +
-            " в третий день воскрес из мертвых, восшел на небеса и сидит одесную Бога, Отца Всемогущего, оттуда придет судить живых и мнртвых." +
+            " в третий день воскрес из мертвых, восшел на небеса и сидит одесную Бога, Отца Всемогущего, оттуда придет судить живых и мертвых." +
             " Верую в духа святого, святую католическую Церьковь, святых общение, оставление грехов, воскрешение плоти, жизнь вечную. Аминь.";
-        string pray3 = "Отче наш,сущий на небесах!Да святится Имя Твое, да ппридет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
-            "хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искущение, но " +
+        string pray3 = "    Отче наш,сущий на небесах!Да святится Имя Твое, да придет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
+            "хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искушение, но " +
             "избавь нас от лукавого. Аминь.";
+        string pray4 = "       Радуйся, Мария благодати полная; Господь с тобою! благословенна Ты между женами и благословен плод чрева Твоего Иисус. " +
+            "Святая Мария, Матерь Божия, молись о нас грешных теперь и в час смерти нашей.Аминь.";
+        string pray5 = "       Слава Отцу и Сыну, и Святому Духу, как было вначале,и ныне, и всегда, и во веки веков.Аминь.";
+        string pray6 = "       О Мария, без первородного греха зачатая! Моли Бога о нас, к Тебе прибегающих.";
+        string pray7 = "       О мой Иисус, прости нам наши прегрешения, избавь нас от огня адского и приведи все души на небо, особенно те, которые" +
+            " наиболее нуждаются в Твоем милосердии.";
+        string pray8 = "       Под Твою защиту прибегаем, Пресвятая Богородица. Не презри молений наших в скорбях наших, но от всех опасностей " +
+            "избавляй нас всегда, Дева преславная и благословенная. Владычица наша, Защитница наша, Заступница наша, Утешительница наша!" +
+            " С Сыном Твоим примири нас, Сыну Твоему поручи нас, Сыну Твоему отдай нас.";
 
 
         public MainPage()
@@ -140,39 +152,30 @@ namespace HolyRosary
             InitializeComponent();
         }
 
-        async Task runningLine(string pray)
+        async void runningLine(string pray, CancellationToken token)
         {
-            //int currentsymbol = 0;
-            //char[] tmp = new char[41];
+             
+            int L = 28;
             currentsymbol = 0;
-            if (pray.Length <= 40)
+            if (pray.Length <= L)
             {
                 pray.CopyTo(currentsymbol, tmp, 0, pray.Length);
                 canvasview2.InvalidateSurface();
             }
             else
             {
-                do
-                {
-                    //prayTimer = new System.Timers.Timer(5);
-                    //prayTimer.Elapsed += OnTimedEvent;
-                    //prayTimer.AutoReset = true;
-                    //prayTimer.Enabled = true;
-                    pray.CopyTo(currentsymbol, tmp, 0, 40);
-                    //Device.StartTimer(TimeSpan.FromSeconds(1f / 60), () =>
-                    //{
-                    //    canvasview2.InvalidateSurface();
-                    //    return true;
-                    //});
-                    canvasview2.InvalidateSurface();
-                    await Task.Delay(100);
-                    currentsymbol++;
-                    //prayTimer.Stop();
-                    //prayTimer.Dispose();
-
-
-                }
-                while (currentsymbol + 40 < pray.Length);
+                //await Task.Run(() =>
+                //{
+                    do
+                    {
+                        if (token.IsCancellationRequested) return;
+                        pray.CopyTo(currentsymbol, tmp, 0, L);
+                        canvasview2.InvalidateSurface();
+                        await Task.Delay(50);
+                        currentsymbol++;
+                    }
+                    while (currentsymbol + L < pray.Length);
+                //});
 
             }
         
@@ -192,7 +195,7 @@ namespace HolyRosary
                 IsAntialias = true,
                 Style = SKPaintStyle.Fill,
                 Color = SKColors.Black,
-                TextSize = 20
+                TextSize = 30
             };
 
             // Рисуем текст
@@ -242,96 +245,200 @@ namespace HolyRosary
         }
         private void Button1_Clicked(object b, EventArgs e)
         {
-           NextPressed = true;
+            
+            cts.Cancel();
+            NextPressed = true;
             int pic1, pic2;
             string filename;
-            switch (Nexti)
-            {
-                case 1:
-                    {
-                        //Label1.Text = pray1;
-                        runningLine(pray1);
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                    }
-                    break;
-                case 2:
-                    {
-                        //Label1.Text = pray2;
-                        runningLine(pray2);
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                    }
-                    break;
-                case 9:
-                    {
-                        BoxViev1.Color= Color.AliceBlue;
-                        picker2.SelectedIndex = 0;
-                        pic1 = picker1.SelectedIndex + 1;
-                        pic2 = picker2.SelectedIndex + 1;
-                        filename= String.Concat("img", pic1.ToString(), pic2.ToString(),".jpg");
-                        img1.Source = filename;
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                       
-                    }
-                    break;
-                case 24:
-                    {
-                        picker2.SelectedIndex = 1;
-                        pic1 = picker1.SelectedIndex + 1;
-                        pic2 = picker2.SelectedIndex + 1;
-                        filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                        img1.Source = filename;
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                       
-                    }
-                    break;
-                case 38:
-                    {
-                        picker2.SelectedIndex = 2;
-                        pic1 = picker1.SelectedIndex + 1;
-                        pic2 = picker2.SelectedIndex + 1;
-                        filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                        img1.Source = filename;
-                        canvasview.InvalidateSurface();
-                        Nexti++;
+            var APray3 = new[] { 9, 24, 39, 54, 69 };
+            var APray5 = new[] { 7, 20, 35, 50, 65, 80};
+            var APray6 = new[] { 21, 36, 51, 66, 81};
+            var APray7 = new[] { 22, 37, 52, 67, 82};
 
-                    }
-                    break;
-                case 53:
-                    {
-                        picker2.SelectedIndex = 3;
-                        pic1 = picker1.SelectedIndex + 1;
-                        pic2 = picker2.SelectedIndex + 1;
-                        filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                        img1.Source = filename;
-                        //img1.Source = "img14.jpg";
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                    }
-                    break;
-                case 68:
-                    {
-                        picker2.SelectedIndex = 4;
-                        pic1 = picker1.SelectedIndex + 1;
-                        pic2 = picker2.SelectedIndex + 1;
-                        filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                        img1.Source = filename;
-                        //img1.Source = "img15.jpg";
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                    }
-                    break;
-                default:
-                    {                       
-                        canvasview.InvalidateSurface();
-                        Nexti++;
-                        //NextPressed = false;
-                        //ci++;
-                    }
-                    break;
+            if ((APray3.Contains(Nexti)))
+            {
+                token = cts.Token;
+                runningLine(pray3, token);
+                canvasview.InvalidateSurface();
+                Nexti++;
+            }
+            else if (APray5.Contains(Nexti))
+            {
+                token = cts.Token;
+                runningLine(pray5, token);
+                canvasview.InvalidateSurface();
+                Nexti++;
+            }
+            else
+                if (APray6.Contains(Nexti))
+            {
+                token = cts.Token;
+                runningLine(pray6, token);
+                canvasview.InvalidateSurface();
+                Nexti++;
+            }
+            else if (APray7.Contains(Nexti))
+            {
+                token = cts.Token;
+                runningLine(pray7, token);
+                canvasview.InvalidateSurface();
+                Nexti++;
+            }
+            else {
+                switch (Nexti)
+                {
+                    case 1:
+                        {
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
+                            runningLine(pray1, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 2:
+                        {
+                            //Label1.Text = pray2;
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
+                            runningLine(pray2, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 3:
+                        {
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
+                            runningLine(pray3, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 4:
+                        {
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
+                            runningLine(pray4, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 5:
+                        {
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
+                            runningLine(pray4, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 6:
+                        {
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
+                            runningLine(pray4, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    //case 7:
+                    //    {
+                    //        runningLine(pray5);
+                    //        canvasview.InvalidateSurface();
+                    //        Nexti++;
+                    //    }
+                    //    break;
+                    case 8:
+                        {
+                            BoxViev1.Color = Color.AliceBlue;
+                            picker2.SelectedIndex = 0;
+                            pic1 = picker1.SelectedIndex + 1;
+                            pic2 = picker2.SelectedIndex + 1;
+                            filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                            img1.Source = filename;
+                            //runningLine(pray3);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+
+                        }
+                        break;
+                    case 24:
+                        {
+                            picker2.SelectedIndex = 1;
+                            pic1 = picker1.SelectedIndex + 1;
+                            pic2 = picker2.SelectedIndex + 1;
+                            filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                            img1.Source = filename;
+                            //cts.Cancel();
+                           // runningLine(pray3, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+
+                        }
+                        break;
+                    case 38:
+                        {
+                            picker2.SelectedIndex = 2;
+                            pic1 = picker1.SelectedIndex + 1;
+                            pic2 = picker2.SelectedIndex + 1;
+                            filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                            img1.Source = filename;
+                            //runningLine(pray3);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+
+                        }
+                        break;
+                    case 53:
+                        {
+                            picker2.SelectedIndex = 3;
+                            pic1 = picker1.SelectedIndex + 1;
+                            pic2 = picker2.SelectedIndex + 1;
+                            filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                            img1.Source = filename;
+                            //img1.Source = "img14.jpg";
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 68:
+                        {
+                            picker2.SelectedIndex = 4;
+                            pic1 = picker1.SelectedIndex + 1;
+                            pic2 = picker2.SelectedIndex + 1;
+                            filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                            img1.Source = filename;
+                            //img1.Source = "img15.jpg";
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+                    case 83:
+                        {
+                            //img1.Source = "img15.jpg";
+                           //cts.Cancel();
+                            runningLine(pray8, token);
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                        }
+                        break;
+
+                    default:
+                        {
+                            if (Nexti != 0 & Nexti != 8 & Nexti != 23 & Nexti != 38 & Nexti != 53 & Nexti != 68)
+                            {
+                                //cts.Cancel();
+                                cts = new CancellationTokenSource();
+                                token = cts.Token;
+                                runningLine(pray4, token);
+                            }
+                            canvasview.InvalidateSurface();
+                            Nexti++;
+                            
+                        }
+                        break;
+                }
                
             }
                  
