@@ -56,23 +56,24 @@ namespace HolyRosary
         };
 
         
-        string pray1 = "    Во имя Отца и Сына и Святого Духа. Аминь.";
+        //string pray1 = "    Во имя Отца и Сына и Святого Духа. Аминь. ";
+        string pray1 = "    Во имя Отца и Сына и Святого Духа. Аминь. ";
         string pray2 = "    Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего," +
             "который был зачат от Духа Святого, родился от Девы Марии, страдал при Понтии Пилате, был распят,умер и погребен; сошел в ад;" +
             " в третий день воскрес из мертвых, восшел на небеса и сидит одесную Бога, Отца Всемогущего, оттуда придет судить живых и мертвых." +
             " Верую в духа святого, святую католическую Церьковь, святых общение, оставление грехов, воскрешение плоти, жизнь вечную. Аминь.";
         string pray3 = "    Отче наш,сущий на небесах!Да святится Имя Твое, да придет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
             "хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искушение, но " +
-            "избавь нас от лукавого. Аминь.";
+            "избавь нас от лукавого. Аминь. ";
         string pray4 = "       Радуйся, Мария благодати полная; Господь с тобою! благословенна Ты между женами и благословен плод чрева Твоего Иисус. " +
-            "Святая Мария, Матерь Божия, молись о нас грешных теперь и в час смерти нашей.Аминь.";
-        string pray5 = "       Слава Отцу и Сыну, и Святому Духу, как было вначале,и ныне, и всегда, и во веки веков.Аминь.";
-        string pray6 = "       О Мария, без первородного греха зачатая! Моли Бога о нас, к Тебе прибегающих.";
+            "Святая Мария, Матерь Божия, молись о нас грешных теперь и в час смерти нашей.Аминь. ";
+        string pray5 = "       Слава Отцу и Сыну, и Святому Духу, как было вначале,и ныне, и всегда, и во веки веков.Аминь. ";
+        string pray6 = "       О Мария, без первородного греха зачатая! Моли Бога о нас, к Тебе прибегающих. ";
         string pray7 = "       О мой Иисус, прости нам наши прегрешения, избавь нас от огня адского и приведи все души на небо, особенно те, которые" +
-            " наиболее нуждаются в Твоем милосердии.";
+            " наиболее нуждаются в Твоем милосердии. ";
         string pray8 = "       Под Твою защиту прибегаем, Пресвятая Богородица. Не презри молений наших в скорбях наших, но от всех опасностей " +
             "избавляй нас всегда, Дева преславная и благословенная. Владычица наша, Защитница наша, Заступница наша, Утешительница наша!" +
-            " С Сыном Твоим примири нас, Сыну Твоему поручи нас, Сыну Твоему отдай нас.";
+            " С Сыном Твоим примири нас, Сыну Твоему поручи нас, Сыну Твоему отдай нас. ";
 
 
         public MainPage()
@@ -120,35 +121,33 @@ namespace HolyRosary
             roll[34, 0] = 21; roll[34, 1] = 30; roll[34, 2] = 2;
             roll[35, 0] = 21; roll[35, 1] = 32; roll[35, 2] = 2;
             roll[36, 0] = 21; roll[36, 1] = 34; roll[36, 2] = 2;
-
-            //3-4
-            roll[37, 0] = 21; roll[37, 1] = 37; roll[37, 2] = 1;
+             
+            roll[37, 0] = 19; roll[37, 1] = 36; roll[37, 2] = 1;
             ////4
-            roll[38, 0] = 19; roll[38, 1] = 39; roll[38, 2] = 2;
-            roll[39, 0] = 17; roll[39, 1] = 39; roll[39, 2] = 2;
-            roll[40, 0] = 15; roll[40, 1] = 39; roll[40, 2] = 2;
-            roll[41, 0] = 13; roll[41, 1] = 39; roll[41, 2] = 2;
-            roll[42, 0] = 11; roll[42, 1] = 38; roll[42, 2] = 2;
-            roll[43, 0] = 10; roll[43, 1] = 36; roll[43, 2] = 2;
-            roll[44, 0] = 10; roll[44, 1] = 34; roll[44, 2] = 2;
-            roll[45, 0] = 10; roll[45, 1] = 32; roll[45, 2] = 2;
-            roll[46, 0] = 11; roll[46, 1] = 30; roll[46, 2] = 2;
-            roll[47, 0] = 13; roll[47, 1] = 29; roll[47, 2] = 2;
+            roll[38, 0] = 16; roll[38, 1] = 37; roll[38, 2] = 2;
+            roll[39, 0] = 14; roll[39, 1] = 37; roll[39, 2] = 2;
+            roll[40, 0] = 12; roll[40, 1] = 36; roll[40, 2] = 2;
+            roll[41, 0] = 11; roll[41, 1] = 34; roll[41, 2] = 2;
+            roll[42, 0] = 11; roll[42, 1] = 32; roll[42, 2] = 2;
+            roll[43, 0] = 11; roll[43, 1] = 30; roll[43, 2] = 2;
+            roll[44, 0] = 11; roll[44, 1] = 28; roll[44, 2] = 2;
+            roll[45, 0] = 12; roll[45, 1] = 26; roll[45, 2] = 2;
+            roll[46, 0] = 14; roll[46, 1] = 25; roll[46, 2] = 2;
+            roll[47, 0] = 16; roll[47, 1] = 24; roll[47, 2] = 2;
             ////4-5
-            roll[48, 0] = 16; roll[48, 1] = 29; roll[48, 2] = 1;
+            roll[48, 0] = 17; roll[48, 1] = 21; roll[48, 2] = 1;
             ////5
-            roll[49, 0] = 17; roll[49, 1] = 26; roll[49, 2] = 2;
-            roll[50, 0] = 17; roll[50, 1] = 24; roll[50, 2] = 2;
-            roll[51, 0] = 17; roll[51, 1] = 22; roll[51, 2] = 2;
-            roll[52, 0] = 17; roll[52, 1] = 20; roll[52, 2] = 2;
-            roll[53, 0] = 17; roll[53, 1] = 18; roll[53, 2] = 2;
-            roll[54, 0] = 15; roll[54, 1] = 17; roll[54, 2] = 2;
-            roll[55, 0] = 13; roll[55, 1] = 17; roll[55, 2] = 2;
-            roll[56, 0] = 11; roll[56, 1] = 18; roll[56, 2] = 2;
+            roll[49, 0] = 17; roll[49, 1] = 18; roll[49, 2] = 2;
+            roll[50, 0] = 17; roll[50, 1] = 16; roll[50, 2] = 2;
+            roll[51, 0] = 17; roll[51, 1] = 14; roll[51, 2] = 2;
+            roll[52, 0] = 15; roll[52, 1] = 13; roll[52, 2] = 2;
+            roll[53, 0] = 13; roll[53, 1] = 13; roll[53, 2] = 2;
+            roll[54, 0] = 11; roll[54, 1] = 14; roll[54, 2] = 2;
+            roll[55, 0] = 10; roll[55, 1] = 16; roll[55, 2] = 2;
+            roll[56, 0] = 10; roll[56, 1] = 18; roll[56, 2] = 2;
             roll[57, 0] = 10; roll[57, 1] = 20; roll[57, 2] = 2;
             roll[58, 0] = 9; roll[58, 1] = 22; roll[58, 2] = 2;
             roll[59, 0] = 6; roll[59, 1] = 23; roll[59, 2] = 1;
-            //
             InitializeComponent();
         }
 
@@ -164,8 +163,6 @@ namespace HolyRosary
             }
             else
             {
-                //await Task.Run(() =>
-                //{
                     do
                     {
                         if (token.IsCancellationRequested) return;
@@ -175,8 +172,6 @@ namespace HolyRosary
                         currentsymbol++;
                     }
                     while (currentsymbol + L < pray.Length);
-                //});
-
             }
         
         }
@@ -257,6 +252,7 @@ namespace HolyRosary
 
             if ((APray3.Contains(Nexti)))
             {
+                cts = new CancellationTokenSource();
                 token = cts.Token;
                 runningLine(pray3, token);
                 canvasview.InvalidateSurface();
@@ -264,6 +260,7 @@ namespace HolyRosary
             }
             else if (APray5.Contains(Nexti))
             {
+                cts = new CancellationTokenSource();
                 token = cts.Token;
                 runningLine(pray5, token);
                 canvasview.InvalidateSurface();
@@ -272,6 +269,7 @@ namespace HolyRosary
             else
                 if (APray6.Contains(Nexti))
             {
+                cts = new CancellationTokenSource();
                 token = cts.Token;
                 runningLine(pray6, token);
                 canvasview.InvalidateSurface();
@@ -279,6 +277,7 @@ namespace HolyRosary
             }
             else if (APray7.Contains(Nexti))
             {
+                cts = new CancellationTokenSource();
                 token = cts.Token;
                 runningLine(pray7, token);
                 canvasview.InvalidateSurface();
@@ -342,13 +341,6 @@ namespace HolyRosary
                             Nexti++;
                         }
                         break;
-                    //case 7:
-                    //    {
-                    //        runningLine(pray5);
-                    //        canvasview.InvalidateSurface();
-                    //        Nexti++;
-                    //    }
-                    //    break;
                     case 8:
                         {
                             BoxViev1.Color = Color.AliceBlue;
@@ -363,7 +355,7 @@ namespace HolyRosary
 
                         }
                         break;
-                    case 24:
+                    case 23:
                         {
                             picker2.SelectedIndex = 1;
                             pic1 = picker1.SelectedIndex + 1;
@@ -416,8 +408,10 @@ namespace HolyRosary
                         break;
                     case 83:
                         {
-                            //img1.Source = "img15.jpg";
-                           //cts.Cancel();
+                            img1.Source = "pray8.jpg";
+                            //cts.Cancel();
+                            cts = new CancellationTokenSource();
+                            token = cts.Token;
                             runningLine(pray8, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
@@ -517,33 +511,16 @@ namespace HolyRosary
                     Color = SKColors.DarkBlue,
                     StrokeWidth = 3
                 };
+                // Рисуем путь розария
                 var path1 = new SKPath();
                 path1.MoveTo(6 * d, 35 * d);
-                path1.LineTo(6 * d, 23 * d);
-                path1.LineTo(6 * d, 23 * d);
-                path1.LineTo(3 * d, 22 * d);
-                path1.LineTo(3 * d, 4 * d);
-                path1.LineTo(5 * d, 3 * d);
-                path1.LineTo(20 * d, 3 * d);
-                path1.LineTo(21 * d, 4 * d);
-                path1.LineTo(21 * d, 37 * d);
-                path1.LineTo(19 * d, 39 * d);
-                path1.LineTo(12 * d, 39 * d);
-                path1.LineTo(10 * d, 37 * d);
-                path1.LineTo(10 * d, 31 * d);
-                path1.LineTo(12 * d, 29 * d);
-                path1.LineTo(16 * d, 29 * d);
-                path1.LineTo(17 * d, 26 * d);
-                path1.LineTo(17 * d, 18 * d);
-                path1.LineTo(15 * d, 17 * d);
-                path1.LineTo(13 * d, 17 * d);
-                path1.LineTo(11 * d, 18 * d);
-                path1.LineTo(9 * d, 22 * d);
-                path1.LineTo(6 * d, 23 * d);
-                // Рисуем путь
+                for (int pi = 0; pi <=59; pi++)
+                {
+                    path1.LineTo(roll[pi, 0] * d, roll[pi, 1] * d); 
+                }
                 canvas.DrawPath(path1, pathStroke);
 
-                // 
+                // рисуем бусинки
                 for (int i = 0; i < 59; i++)
                 {
                     if (roll[i, 2] == 2)
