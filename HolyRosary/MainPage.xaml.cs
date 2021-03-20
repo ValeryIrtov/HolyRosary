@@ -30,8 +30,9 @@ namespace HolyRosary
         public int[,] roll = new int[60, 3];
         public int currentsymbol = 0; //счетчик в тексте молитвы
         char[] tmp = new char[41]; //отображаемый текст молитвы
+        public static int SliderValue = 50; // скорость бегущей строки
        
-        static CancellationTokenSource cts = new CancellationTokenSource();
+        static CancellationTokenSource cts = new CancellationTokenSource(); //для отмены асинхронного потока
         CancellationToken token = cts.Token;
         //кисть для основных бусинок
         SKPaint circleFill = new SKPaint
@@ -61,7 +62,7 @@ namespace HolyRosary
         string pray2 = "    Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего," +
             "который был зачат от Духа Святого, родился от Девы Марии, страдал при Понтии Пилате, был распят,умер и погребен; сошел в ад;" +
             " в третий день воскрес из мертвых, восшел на небеса и сидит одесную Бога, Отца Всемогущего, оттуда придет судить живых и мертвых." +
-            " Верую в духа святого, святую католическую Церьковь, святых общение, оставление грехов, воскрешение плоти, жизнь вечную. Аминь.";
+            " Верую в духа святого, святую католическую Церьковь, святых общение, оставление грехов, воскрешение плоти, жизнь вечную. Аминь. ";
         string pray3 = "    Отче наш,сущий на небесах!Да святится Имя Твое, да придет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
             "хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искушение, но " +
             "избавь нас от лукавого. Аминь. ";
@@ -168,7 +169,7 @@ namespace HolyRosary
                         if (token.IsCancellationRequested) return;
                         pray.CopyTo(currentsymbol, tmp, 0, L);
                         canvasview2.InvalidateSurface();
-                        await Task.Delay(50);
+                        await Task.Delay(SliderValue);
                         currentsymbol++;
                     }
                     while (currentsymbol + L < pray.Length);
@@ -437,9 +438,9 @@ namespace HolyRosary
             }
                  
         }
-        private void SetingButton_Cliked(object b, EventArgs e)
+        async  void SetingButton_Cliked(object b, EventArgs e)
         {
-            
+            await Navigation.PushModalAsync(new SettingPage());
         }
 
         private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
