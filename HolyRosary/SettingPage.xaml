@@ -4,12 +4,20 @@
              x:Class="HolyRosary.SettingPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Настройки"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Slider x:Name="sliderRunLine" Maximum="200"
-                    ValueChanged="OnSliderValueChanged" 
-                    VerticalOptions="StartAndExpand" ></Slider>
+            <Label Text="Настройки" FontSize="Medium" ></Label>
+            <Label Text="Бягучы радок" FontSize="Small" ></Label>
+
+            <Slider x:Name="sliderRunLine" Maximum="200"></Slider>
+            <Label Text="Выберите язык / Выберыце мову" FontSize="Medium"></Label>
+                
+            <Picker x:Name="pickerLanguare" SelectedIndex="1" FontSize="Large">
+                <Picker.Items>
+                    <x:String>RU (Русский)</x:String>
+                    <x:String>BY (Беларуская)</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button x:Name="SetOKButton" Text="OK" VerticalOptions="End" Clicked="SetOKButton_Clicked" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

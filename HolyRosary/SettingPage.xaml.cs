@@ -18,11 +18,24 @@ namespace HolyRosary
         {
             InitializeComponent();
             sliderRunLine.Value = V - MainPage.SliderValue;
+            pickerLanguare.SelectedIndex = MainPage.Languare;
         }
         void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
         {
             double value = args.NewValue;
             MainPage.SliderValue = V - (int)value;
+        }
+        async void SetOKButton_Clicked(object b, EventArgs e)
+        {
+            if (pickerLanguare.SelectedIndex != MainPage.Languare)
+            {
+                MainPage.Languare = pickerLanguare.SelectedIndex;
+                MainPage.setPrayLanguare(pickerLanguare.SelectedIndex);
+            }
+            double value = sliderRunLine.Value;
+            MainPage.SliderValue = V - (int)value;
+            await Navigation.PopModalAsync();
+
         }
     }
 }
