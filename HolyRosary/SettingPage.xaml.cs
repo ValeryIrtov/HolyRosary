@@ -13,7 +13,8 @@ namespace HolyRosary
     public partial class SettingPage : ContentPage
     {
         private const int V = 200;
-
+        public delegate void SendLanguare(int L);
+        public event SendLanguare onCloseSetPage;
         public SettingPage()
         {
             InitializeComponent();
@@ -30,10 +31,12 @@ namespace HolyRosary
             if (pickerLanguare.SelectedIndex != MainPage.Languare)
             {
                 MainPage.Languare = pickerLanguare.SelectedIndex;
-                MainPage.setPrayLanguare(pickerLanguare.SelectedIndex);
+                onCloseSetPage(pickerLanguare.SelectedIndex);
+               //MainPage.setPrayLanguare(pickerLanguare.SelectedIndex);
             }
             double value = sliderRunLine.Value;
             MainPage.SliderValue = V - (int)value;
+            
             await Navigation.PopModalAsync();
 
         }

@@ -13,7 +13,7 @@
 
     <StackLayout x:Name="StackLayoutPic">
         <StackLayout x:Name="stackLayout2" Orientation="Horizontal" HorizontalOptions="Fill">
-           <Label Text="СВЯТЫ РУЖАНЕЦ" HorizontalOptions="StartAndExpand" VerticalOptions="Start" FontSize="Large" HorizontalTextAlignment="Center" />
+           <Label x:Name="Header" Text="СВЯТЫ РУЖАНЕЦ" HorizontalOptions="StartAndExpand" VerticalOptions="Start" FontSize="Large" HorizontalTextAlignment="Center" />
             <Button x:Name="setingButton" Text="SET" HorizontalOptions="Start" Clicked="SetingButton_Cliked"/>
         </StackLayout>
         <!-- Place new controls here -->

@@ -32,7 +32,10 @@ namespace HolyRosary
         char[] tmp = new char[41]; //отображаемый текст молитвы
         public static int SliderValue = 50; // скорость бегущей строки
         public static int Languare = 1;  // 0 -RU 1-BY
-       
+
+        
+
+
         static CancellationTokenSource cts = new CancellationTokenSource(); //для отмены асинхронного потока
         CancellationToken token = cts.Token;
         //кисть для основных бусинок
@@ -80,8 +83,8 @@ namespace HolyRosary
             "нас ад злога. Амэн. ";
         static string pray3 = "";
 
-        static string pray4RU = "       Радуйся, Мария благодати полная; Господь с тобою! благословенна Ты между женами и благословен плод чрева Твоего Иисус. " +
-            "Святая Мария, Матерь Божия, молись о нас грешных теперь и в час смерти нашей.Аминь. ";
+        static string pray4RU = "       Радуйся, Мария благодати полная, Господь с тобой. Благословенна Ты между женами и благословен плод чрева Твоего Иисус. " +
+            "Святая Мария, Матерь Божия, молись о нас, грешных, ныне и в час смерти нашей. Аминь. ";
         static string pray4BY = "       Вітай, Марыя, поўная ласкі, Пан з Табою, благаслаўлёная Ты між жанчынамі і благаслаўлёны плод улоння Твайго, Езус." +
             "Святая Марыя, Маці Божая, маліся за нас грэшных, цяпер і ў хвіліну смерці нашай. Амэн. ";
         static string pray4 = "";
@@ -111,6 +114,7 @@ namespace HolyRosary
 
         public MainPage()
         {
+           
             // изициализируем массив точек - центр бусинок
             roll[0, 0] = 6; roll[0, 1] = 33; roll[0, 2] = 1;
             roll[1, 0] = 6; roll[1, 1] = 30; roll[1, 2] = 2;
@@ -182,9 +186,10 @@ namespace HolyRosary
             roll[58, 0] = 9; roll[58, 1] = 22; roll[58, 2] = 2;
             roll[59, 0] = 6; roll[59, 1] = 23; roll[59, 2] = 1;
 
-            // 
+            // BY
             if (Languare == 1)
             {
+                
                 pray1 = pray1BY;
                 pray2 = pray2BY;
                 pray3 = pray3BY;
@@ -193,8 +198,9 @@ namespace HolyRosary
                 pray6 = pray6BY;
                 pray7 = pray7BY;
                 pray8 = pray8BY;
+               
             }
-            else
+            else //RU
             {
                 pray1 = pray1RU;
                 pray2 = pray2RU;
@@ -204,15 +210,21 @@ namespace HolyRosary
                 pray6 = pray6RU;
                 pray7 = pray7RU;
                 pray8 = pray8RU;
-            }
+                }
 
-
-                InitializeComponent();
+            
+            InitializeComponent();
+           // Picker picker1 = this.FindByName<Picker>("picker1");
         }
-        static public void setPrayLanguare(int L)
+        public void setPrayLanguare(int L)
         {
+            // сохранить выбранное таинство
+            int currentTile = picker1.SelectedIndex;
+            int currentmistery = picker2.SelectedIndex;
+            picker1.Items.Clear();
             if (L == 1)
             {
+                Header.Text = "СВЯТЫ РУЖАНЕЦ";
                 pray1 = pray1BY;
                 pray2 = pray2BY;
                 pray3 = pray3BY;
@@ -221,9 +233,14 @@ namespace HolyRosary
                 pray6 = pray6BY;
                 pray7 = pray7BY;
                 pray8 = pray8BY;
+                picker1.Items.Add("Хвалебныя таямніцы");
+                picker1.Items.Add("Радасныя таямніцы");
+                picker1.Items.Add("Балесныя таямніцы");
+                picker1.Items.Add("Таямніцы святла");
             }
             else
             {
+                Header.Text = "СВЯТОЙ РОЗАРИЙ";
                 pray1 = pray1RU;
                 pray2 = pray2RU;
                 pray3 = pray3RU;
@@ -232,7 +249,13 @@ namespace HolyRosary
                 pray6 = pray6RU;
                 pray7 = pray7RU;
                 pray8 = pray8RU;
+                picker1.Items.Add("Тайны славные");
+                picker1.Items.Add("Тайны радостные");
+                picker1.Items.Add("Тайны скорбные");
+                picker1.Items.Add("Тайны светлые");
             }
+            picker1.SelectedIndex = currentTile;
+            picker2.SelectedIndex = currentmistery;
         }
 
         async void runningLine(string pray, CancellationToken token)
@@ -290,37 +313,108 @@ namespace HolyRosary
             }
             if (picker1.SelectedIndex == 0) //тайны славные
             {
-                picker2.Items.Add("Таинство первое. Воскресение");
-                picker2.Items.Add("Таинство второе. Вознесение");
-                picker2.Items.Add("Таинство третье. Сошествие Святого Духа");
-                picker2.Items.Add("Таинство четвертое. Успение");
-                picker2.Items.Add("Таинство пятое. Коронация");
+                switch (Languare)
+                {
+                    case 0:
+                        {
+                            picker2.Items.Add("Таинство первое. Воскресение");
+                            picker2.Items.Add("Таинство второе. Вознесение");
+                            picker2.Items.Add("Таинство третье. Сошествие Святого Духа");
+                            picker2.Items.Add("Таинство четвертое. Успение");
+                            picker2.Items.Add("Таинство пятое. Коронация");
+                        } break;
+                    case 1:
+                        {
+                            picker2.Items.Add("Таямніца першая. Змёртвыхпаўстанне Хрыста");
+                            picker2.Items.Add("Таямніца другая. Унебаўшэсце Хрыста");
+                            picker2.Items.Add("Таямніца трэцяя. Спасланне Духа Святога");
+                            picker2.Items.Add("Таямніца чацьвёртая. Унебаўзяцце Найсвяцейшай Панны Марыі");
+                            picker2.Items.Add("Таямніца пятая. Укаранаванне Найсвяцейшай Панны Марыі");
+                        }break;
+
+                }
+               
             }
             else if (picker1.SelectedIndex == 1) //тайны радостные
             {
-                picker2.Items.Add("Таинство первое. Благовествование");
-                picker2.Items.Add("Таинство второе. Посещение Елисаветы");
-                picker2.Items.Add("Таинство третье. Рождение Иисуса Христа");
-                picker2.Items.Add("Таинство четвертое. Сретение");
-                picker2.Items.Add("Таинство пятое. Обретение Иисуса в Храме");
+                switch (Languare)
+                {
+                    case 0:
+                        {
+                            picker2.Items.Add("Таинство первое. Благовествование");
+                            picker2.Items.Add("Таинство второе. Посещение Елисаветы");
+                            picker2.Items.Add("Таинство третье. Рождение Иисуса Христа");
+                            picker2.Items.Add("Таинство четвертое. Сретение");
+                            picker2.Items.Add("Таинство пятое. Обретение Иисуса в Храме");
+                        }
+                        break;
+                    case 1:
+                        {
+                            picker2.Items.Add("Таямніца першая. Звеставанне Найсвяцейшай Панне Марыі");
+                            picker2.Items.Add("Таямніца другая. Адведзіны Паннай Марыяй святой Альжбэты");
+                            picker2.Items.Add("Таямніца трэцяя. Нараджэнне Збаўцы нашага, Езуса Хрыста");
+                            picker2.Items.Add("Таямніца чацьвёртая. Ахвяраванне Хрыста ў Святыні");
+                            picker2.Items.Add("Таямніца пятая. Езуса знаходзяць у Ерузалемскай святыні");
+                        }
+                        break;
+
+                }
+               
             }
             else if (picker1.SelectedIndex == 2) //тайны скорбные
             {
-                picker2.Items.Add("Таинство первое. Борение в Гефсиманском саду");
-                picker2.Items.Add("Таинство второе. Бичевание в колоннаде");
-                picker2.Items.Add("Таинство третье. Возложение тернового венка");
-                picker2.Items.Add("Таинство четвертое. Крестный путь");
-                picker2.Items.Add("Таинство пятое. Распятие");
+                switch (Languare)
+                {
+                    case 0:
+                        {
+                            picker2.Items.Add("Таинство первое. Борение в Гефсиманском саду");
+                            picker2.Items.Add("Таинство второе. Бичевание в колоннаде");
+                            picker2.Items.Add("Таинство третье. Возложение тернового венка");
+                            picker2.Items.Add("Таинство четвертое. Крестный путь");
+                            picker2.Items.Add("Таинство пятое. Распятие");
+                        }
+                        break;
+                    case 1:
+                        {
+                            picker2.Items.Add("Таямніца першая. Малітва Езуса Хрыста ў садзе Аліўным");
+                            picker2.Items.Add("Таямніца другая. Бічаванне Езуса");
+                            picker2.Items.Add("Таямніца трэцяя. Укаранаванне Езуса цернем");
+                            picker2.Items.Add("Таямніца чацьвёртая. Езус нясе крыж на Галгофу");
+                            picker2.Items.Add("Таямніца пятая. Укрыжаванне і смерць Езуса на крыжы");
+                        }
+                        break;
+
+                }
+ 
             }
             else  //тайны светлые
             {
-                picker2.Items.Add("Таинство первое. Крещение в Иордане");
-                picker2.Items.Add("Таинство второе. Свадьба в Канне");
-                picker2.Items.Add("Таинство третье. Нагорная проповедь");
-                picker2.Items.Add("Таинство четвертое. Преображение");
-                picker2.Items.Add("Таинство пятое. Установление Эвхористии");
+                switch (Languare)
+                {
+                    case 0:
+                        {
+                            picker2.Items.Add("Таинство первое. Крещение в Иордане");
+                            picker2.Items.Add("Таинство второе. Свадьба в Канне");
+                            picker2.Items.Add("Таинство третье. Нагорная проповедь");
+                            picker2.Items.Add("Таинство четвертое. Преображение");
+                            picker2.Items.Add("Таинство пятое. Установление Эвхористии");
+                        }
+                        break;
+                    case 1:
+                        {
+                            picker2.Items.Add("Таямніца першая. Хрост Пана Езуса ў Ярдане");
+                            picker2.Items.Add("Таямніца другая. Езус аб'яўляе Сябе на вяселлі ў Кане");
+                            picker2.Items.Add("Таямніца трэцяя. Абвяшчэнне Валадарства Божага і заклік да навяртання");
+                            picker2.Items.Add("Таямніца чацьвёртая. Перамяненне Пана на гары Табор");
+                            picker2.Items.Add("Таямніца пятая. Устанаўленне Эўхарыстыі");
+                        }
+                        break;
+
+                }
+
             }
             picker2.SelectedIndex = 0;
+            if( Nexti < 8 ) picker2.IsEnabled = false;
         }
         private void Button1_Clicked(object b, EventArgs e)
         {
@@ -330,10 +424,11 @@ namespace HolyRosary
             int pic1, pic2;
             string filename;
             var APray3 = new[] { 9, 24, 39, 54, 69 };
-            var APray5 = new[] { 7, 20, 35, 50, 65, 80};
+            var APray5 = new[] { 7, 20, 35, 50, 65, 80, 84};
             var APray6 = new[] { 21, 36, 51, 66, 81};
             var APray7 = new[] { 22, 37, 52, 67, 82};
 
+            if (Nexti == 8) picker2.IsEnabled = true;
             if ((APray3.Contains(Nexti)))
             {
                 cts = new CancellationTokenSource();
@@ -523,7 +618,12 @@ namespace HolyRosary
         }
         async  void SetingButton_Cliked(object b, EventArgs e)
         {
-            await Navigation.PushModalAsync(new SettingPage());
+            int oldLanguare = Languare;
+            SettingPage setPage = new SettingPage();
+            setPage.onCloseSetPage += setPrayLanguare;
+            await Navigation.PushModalAsync(setPage);
+            if (oldLanguare != Languare)
+                setPrayLanguare(Languare);
         }
 
         private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
@@ -678,5 +778,7 @@ namespace HolyRosary
             canvas.Save();
         }
        
+
     }
+
 }

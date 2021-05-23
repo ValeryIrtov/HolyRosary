@@ -12,21 +12,27 @@ namespace HolyRosary
         {
             InitializeComponent();
 
-            MainPage = new MainPage(); 
-           
+            MainPage = new MainPage();
+            
+                      
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
             Picker picker1 = MainPage.FindByName<Picker>("picker1");
-            picker1.Items.Add("Тайны славные");
-            picker1.Items.Add("Тайны радостные");
-            picker1.Items.Add("Тайны скорбные");
-            picker1.Items.Add("Тайны светлые");
+            Picker picker2 = MainPage.FindByName<Picker>("picker2");
+            picker1.Items.Add("Хвалебныя таямніцы");
+            picker1.Items.Add("Радасныя таямніцы");
+            picker1.Items.Add("Балесныя таямніцы");
+            picker1.Items.Add("Таямніцы святла"); 
             picker1.SelectedIndex = MysteryToDay();
-            //DrawingRosaryFull();
+
+            
+
         }
+            // BY
+            
 
         protected override void OnSleep()
         {
@@ -37,7 +43,7 @@ namespace HolyRosary
         {
             // Handle when your app resumes
         }
-        private int MysteryToDay()
+        public int MysteryToDay()
         {
             if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday ||
                     DateTime.Now.DayOfWeek == DayOfWeek.Wednesday) return 0;
@@ -47,8 +53,8 @@ namespace HolyRosary
                     DateTime.Now.DayOfWeek == DayOfWeek.Friday) return 2;
             else return 3;
         }
-       
-         
-                
+
+
+
     }
 }
