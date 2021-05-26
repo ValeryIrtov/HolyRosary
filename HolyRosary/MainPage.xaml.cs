@@ -726,7 +726,7 @@ namespace HolyRosary
                         IsAntialias = true,
                         Style = SKPaintStyle.Stroke,
                         Color = SKColors.Yellow,
-                        StrokeWidth = 10
+                        StrokeWidth = 6
                     };
                     var path = new SKPath();
                     path.MoveTo(2 * d, 39 * d);
@@ -735,24 +735,44 @@ namespace HolyRosary
                     path.LineTo(6 * d, 37 * d);
                     canvas.DrawPath(path, pathCroc);
 
-                    var pathCroc2 = new SKPaint
-                    {
-                        IsAntialias = true,
-                        Style = SKPaintStyle.Stroke,
-                        Color = SKColors.CornflowerBlue,
-                        StrokeWidth = 6
-                    };
-                    // Создаем путь
-                    var path2 = new SKPath();
-                    path2.MoveTo(2 * d, 39 * d);
-                    path2.LineTo(6 * d, 35 * d);
-                    path2.MoveTo(4 * d, 35 * d);
-                    path2.LineTo(6 * d, 37 * d);
-                    canvas.DrawPath(path2, pathCroc2);
+                    
                 }
                 else 
                 {
-                    if (ci < 60)
+                    if (Nexti == 4)
+                    {
+                        var pathCroc = new SKPaint
+                        {
+                            IsAntialias = true,
+                            Style = SKPaintStyle.Stroke,
+                            Color = SKColors.Gray,
+                            StrokeWidth = 8
+                        };
+                        // Создаем путь
+                        var path = new SKPath();
+                        path.MoveTo(2 * d, 39 * d);
+                        path.LineTo(6 * d, 35 * d);
+                        path.MoveTo(4 * d, 35 * d);
+                        path.LineTo(6 * d, 37 * d);
+                        canvas.DrawPath(path, pathCroc);
+
+                        var pathCroc2 = new SKPaint
+                        {
+                            IsAntialias = true,
+                            Style = SKPaintStyle.Stroke,
+                            Color = SKColors.CornflowerBlue,
+                            StrokeWidth = 6
+                        };
+                        // Создаем путь
+                        var path2 = new SKPath();
+                        path2.MoveTo(2 * d, 39 * d);
+                        path2.LineTo(6 * d, 35 * d);
+                        path2.MoveTo(4 * d, 35 * d);
+                        path2.LineTo(6 * d, 37 * d);
+                        canvas.DrawPath(path2, pathCroc2);
+                        //1
+                    }
+                    if ( ci < 60 )
                     {
                         // canvas.Restore();
                         var Nexiarray = new[] { 3, 9, 10, 22, 23, 24, 25, 37, 38, 39, 40, 52, 53, 54, 55, 67, 68, 69, 70 };
