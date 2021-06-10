@@ -21,7 +21,7 @@
         <Picker x:Name="picker1" SelectedIndexChanged="picker1_change"> 
         </Picker>
            
-        <Picker x:Name="picker2" VerticalOptions="StartAndExpand" >
+        <Picker x:Name="picker2" VerticalOptions="CenterAndExpand" >
         </Picker>
 
         <Grid x:Name="Grid1" RowSpacing="2">
@@ -39,7 +39,7 @@
  <!--<Label x:Name="Label1" Text="" 
            HorizontalOptions="Start"
            VerticalOptions="Start" />-->
-<views:SKCanvasView x:Name="canvasview2" PaintSurface="OnPainting2" />
+<views:SKCanvasView x:Name = "canvasview2"  HorizontalOptions = "FillAndExpand" PaintSurface = "OnPainting2" />
         
 <Button x:Name ="Button1" Text=">>" VerticalOptions="End" Clicked="Button1_Clicked" />
 

@@ -28,7 +28,13 @@ namespace HolyRosary
             picker1.Items.Add("Таямніцы святла"); 
             picker1.SelectedIndex = MysteryToDay();
 
-            
+            switch (picker1.SelectedIndex)
+            {
+                case 0: picker2.BackgroundColor = Color.OrangeRed; break;
+                case 1: picker2.BackgroundColor = Color.Gold; ; break;
+                case 2: picker2.BackgroundColor = Color.Magenta; break;
+                case 3: picker2.BackgroundColor = Color.LightBlue; break;
+            }
 
         }
             // BY
