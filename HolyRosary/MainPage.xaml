@@ -31,9 +31,17 @@
 			</Grid.ColumnDefinitions>
             <!--<BoxView x:Name="BoxView1"  Color="Red" Grid.Column="0" Grid.Row="0" /> -->
             <views:SKCanvasView x:Name="canvasview" PaintSurface="OnPainting" />
-            <BoxView x:Name ="BoxViev1" Color="Black" Grid.Column="1" Grid.Row="0" />
-            <Image x:Name="img1" Source="img1.jpg" VerticalOptions= "FillAndExpand"  Grid.Column="1" Grid.Row="0"/> 
-        </Grid>
+            <!--BoxView x:Name ="BoxViev1" Grid.Column="1" Grid.Row="0" Color="AliceBlue"/> -->
+            <ImageButton x:Name="img1"
+                         Source="img1.jpg" 
+                         Grid.Column="1" Grid.Row="0" 
+                         Clicked="ImageButton_Clicked" 
+                         BackgroundColor="AliceBlue"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"
+                         BorderWidth="3"
+                        />
+         </Grid>
            
 
  <!--<Label x:Name="Label1" Text="" 
@@ -41,7 +49,7 @@
            VerticalOptions="Start" />-->
 <views:SKCanvasView x:Name = "canvasview2"  HorizontalOptions = "FillAndExpand" PaintSurface = "OnPainting2" />
         
-<Button x:Name ="Button1" Text=">>" VerticalOptions="End" Clicked="Button1_Clicked" />
+<Button x:Name ="Button1" Text=">>" VerticalOptions="End" Clicked="Button1_Clicked"  />
 
 
 

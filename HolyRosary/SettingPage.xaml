@@ -17,7 +17,7 @@
                 </Picker.Items>
             </Picker>
             <Button x:Name="SetOKButton" Text="OK" VerticalOptions="End" Clicked="SetOKButton_Clicked" />
-
+            <Label Text="bsuir.valery.irtov@gmail.com" FontSize="Small" VerticalOptions="End"> </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

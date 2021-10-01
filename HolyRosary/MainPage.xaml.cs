@@ -65,28 +65,28 @@ namespace HolyRosary
         static string pray1BY = "У імя Айца і Сына, і Духа Святога. Амэн. ";
         static string pray1 = "";
 
-        static string pray2RU = "Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего," +
-            "который был зачат от Духа Святого, родился от Девы Марии, страдал при Понтии Пилате, был распят, умер и погребён; сошел в ад;" +
+        static string pray2RU = "Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего, " +
+            " который был зачат от Духа Святого, родился от Девы Марии, страдал при Понтии Пилате, был распят, умер и погребён; сошел в ад;" +
             " в третий день воскрес из мертвых, восшел на небеса и сидит одесную Бога, Отца Всемогущего, оттуда придет судить живых и мертвых." +
             " Верую в духа святого, святую католическую Церьковь, святых общение, оставление грехов, воскрешение плоти, жизнь вечную. Аминь.";
-        static string pray2BY = "Веру ў Бога, Айца ўсемагутнага, Стварыцеля неба і замлі, і ў Езуса Хрыста, Сына Яго адзінага, Пана нашага," +
+        static string pray2BY = "Веру ў Бога, Айца ўсемагутнага, Стварыцеля неба і зямлі, і ў Езуса Хрыста, Сына Яго адзінага, Пана нашага," +
             " які быў зачаты ад Духа Святога, нарадзіўся з Дзевы Марыі, замучаны пры Понцкім Пілаце, укрыжаваны, памёр і быў пахаваны;зышоў да " +
-            "адхлані, на трэці дзень уваскрос з памерлых, узышоў на неба, сядзіць праваруч Бога Айца ўсемагутнага, адтуль прыдзе судзіць " +
-            "жывых і памерлых. Веру ў Духа Святога, святы Касцёл каталіцкі, еднасць святых, адпушчэнне грахоў, уваскрашэнне цела, жыццё вечнае. Амэн. ";
+            " адхлані, на трэці дзень уваскрос з памерлых, узышоў на неба, сядзіць праваруч Бога Айца ўсемагутнага, адтуль прыдзе судзіць " +
+            " жывых і памерлых. Веру ў Духа Святога, святы Касцёл каталіцкі, еднасць святых, адпушчэнне грахоў, уваскрашэнне цела, жыццё вечнае. Амэн. ";
         static string pray2 = "";
 
         static string pray3RU = "Отче наш,сущий на небесах!Да святится Имя Твое, да придет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
-            "хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искушение, но " +
-            "избавь нас от лукавого. Аминь.";
-        static string pray3BY = "Ойча наш, каторы ёсць у небе, свяціся імя Тваё, прыйдзі Валадарства Тваё, будзь воля Твая як у небе так і на зямлі." +
+            " хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искушение, но " +
+            " избавь нас от лукавого. Аминь.";
+        static string pray3BY = "Ойча наш, каторы ёсць у небе, свяціся імя Тваё, прыйдзі Валадарства Тваё, будзь воля Твая як у небе так і на зямлі. " +
             " Хлеба нашага штодзённага дай нам сёння, і адпусці нам правіны нашы, як і мы адпускаем вінаватым нашым, і не ўводзь нас у спакусу, але збаў" +
-            "нас ад злога. Амэн.";
+            " нас ад злога. Амэн.";
         static string pray3 = "";
 
         static string pray4RU = "Радуйся, Мария благодати полная, Господь с тобой. Благословенна Ты между женами и благословен плод чрева Твоего Иисус." +
-            "Святая Мария, Матерь Божия, молись о нас, грешных, ныне и в час смерти нашей. Аминь.";
+            " Святая Мария, Матерь Божия, молись о нас, грешных, ныне и в час смерти нашей. Аминь.";
         static string pray4BY = "Вітай, Марыя, поўная ласкі, Пан з Табою, благаслаўлёная Ты між жанчынамі і благаслаўлёны плод улоння Твайго, Езус. " +
-            "Святая Марыя, Маці Божая, маліся за нас грэшных, цяпер і ў хвіліну смерці нашай. Амэн.";
+            " Святая Марыя, Маці Божая, маліся за нас грэшных, цяпер і ў хвіліну смерці нашай. Амэн.";
         static string pray4 = "";
 
         static string pray5RU = "Слава Отцу и Сыну, и Святому Духу, как было вначале,и ныне, и всегда, и во веки веков. Аминь.";
@@ -214,7 +214,9 @@ namespace HolyRosary
 
             
             InitializeComponent();
-           // Picker picker1 = this.FindByName<Picker>("picker1");
+            // Picker picker1 = this.FindByName<Picker>("picker1");
+            
+
         }
         public void setPrayLanguare(int LanguareP)
         {
@@ -441,7 +443,8 @@ namespace HolyRosary
             var APray5 = new[] { 7, 20, 35, 50, 65, 80, 84};
             var APray6 = new[] { 21, 36, 51, 66, 81};
             var APray7 = new[] { 22, 37, 52, 67, 82};
-
+            //img1.HorizontalOptions = LayoutOptions.Center;
+            //img1.VerticalOptions = LayoutOptions.Center; 
             if (Nexti == 8) picker2.IsEnabled = true;
             if ((APray3.Contains(Nexti)))
             {
@@ -536,12 +539,16 @@ namespace HolyRosary
                         break;
                     case 8:
                         {
-                            BoxViev1.Color = Color.AliceBlue;
+                            //BoxViev1.Color = Color.AliceBlue;
                             picker2.SelectedIndex = 0;
                             pic1 = picker1.SelectedIndex + 1;
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
+                            
+                            
+                            
+
                             //runningLine(pray3);
                             canvasview.InvalidateSurface();
                             Nexti++;
@@ -555,8 +562,9 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
+                            
                             //cts.Cancel();
-                           // runningLine(pray3, token);
+                            // runningLine(pray3, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
 
@@ -594,7 +602,6 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
-                            //img1.Source = "img15.jpg";
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
@@ -808,6 +815,37 @@ namespace HolyRosary
             }
             NextPressed = false;
             canvas.Save();
+        }
+
+        async void ImageButton_Clicked(object b, EventArgs e)
+        {
+            string filename2;
+           // img1.VerticalOptions = LayoutOptions.Start;
+           // img1.HorizontalOptions = LayoutOptions.End;
+
+            if (Nexti < 9)
+            {
+                filename2 = "img1.jpg";
+                ImageViewPage ImagePage = new ImageViewPage(filename2, picker1.SelectedItem.ToString());
+                await Navigation.PushModalAsync(ImagePage);
+            }
+            else
+            if (Nexti < 83)
+            {
+                int pic1 = picker1.SelectedIndex + 1;
+                int pic2 = picker2.SelectedIndex + 1;
+                filename2 = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                ImageViewPage ImagePage = new ImageViewPage(filename2, picker2.SelectedItem.ToString());
+                await Navigation.PushModalAsync(ImagePage);
+            }
+            else
+            {
+                filename2 = "pray8.jpg";
+                ImageViewPage ImagePage = new ImageViewPage(filename2, picker1.SelectedItem.ToString());
+                await Navigation.PushModalAsync(ImagePage);
+            }
+           
+            
         }
        
 
