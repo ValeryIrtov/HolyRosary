@@ -6507,10 +6507,13 @@ namespace HolyRosary.Droid
 			public const int pray8 = 2131165519;
 			
 			// aapt resource value: 0x7F070150
-			public const int tooltip_frame_dark = 2131165520;
+			public const int Setimg = 2131165520;
 			
 			// aapt resource value: 0x7F070151
-			public const int tooltip_frame_light = 2131165521;
+			public const int tooltip_frame_dark = 2131165521;
+			
+			// aapt resource value: 0x7F070152
+			public const int tooltip_frame_light = 2131165522;
 			
 			static Drawable()
 			{

@@ -12,9 +12,14 @@
              x:Class="HolyRosary.MainPage">
 
     <StackLayout x:Name="StackLayoutPic">
-        <StackLayout x:Name="stackLayout2" Orientation="Horizontal" HorizontalOptions="Fill">
-           <Label x:Name="Header" Text="СВЯТЫ РУЖАНЕЦ" HorizontalOptions="StartAndExpand" VerticalOptions="Start" FontSize="Large" HorizontalTextAlignment="Center" />
-            <Button x:Name="setingButton" Text="SET" HorizontalOptions="Start" Clicked="SetingButton_Cliked"/>
+        <StackLayout x:Name="stackLayout2" Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="LightBlue">
+           <Label x:Name="Header" Text="СВЯТЫ РУЖАНЕЦ" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Large" HorizontalTextAlignment="Start" 
+                  VerticalTextAlignment="Center"/>
+            <ImageButton x:Name="setingButton" 
+                         Source="Setimg.png" 
+                         HorizontalOptions="Start"
+                         Aspect="AspectFit"
+                         Clicked="SetingButton_Cliked"/>
         </StackLayout>
         <!-- Place new controls here -->
      
@@ -37,9 +42,10 @@
                          Grid.Column="1" Grid.Row="0" 
                          Clicked="ImageButton_Clicked" 
                          BackgroundColor="AliceBlue"
-                         HorizontalOptions="Start"
+                         HorizontalOptions="FillAndExpand"
                          VerticalOptions="Start"
                          BorderWidth="3"
+                         Aspect="AspectFit"
                         />
          </Grid>
            

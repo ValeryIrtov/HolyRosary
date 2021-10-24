@@ -61,7 +61,7 @@ namespace HolyRosary
         };
 
         
-        static string pray1RU = "Во имя Отца и Сына и Святого Духа. Аминь.";
+        static string pray1RU = "Во имя Отца и Сына и Святого Духа. Аминь. ";
         static string pray1BY = "У імя Айца і Сына, і Духа Святога. Амэн. ";
         static string pray1 = "";
 
@@ -75,7 +75,7 @@ namespace HolyRosary
             " жывых і памерлых. Веру ў Духа Святога, святы Касцёл каталіцкі, еднасць святых, адпушчэнне грахоў, уваскрашэнне цела, жыццё вечнае. Амэн. ";
         static string pray2 = "";
 
-        static string pray3RU = "Отче наш,сущий на небесах!Да святится Имя Твое, да придет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
+        static string pray3RU = "Отче наш,сущий на небесах! Да святится Имя Твое, да придет царство Твое, да будет воля Твоя как на небе, так и на земле; " +
             " хлеб наш насущный дай нам на сей день; и прости нам долги наши, как и мы прощаем должникам нашим; и не введи нас в искушение, но " +
             " избавь нас от лукавого. Аминь.";
         static string pray3BY = "Ойча наш, каторы ёсць у небе, свяціся імя Тваё, прыйдзі Валадарства Тваё, будзь воля Твая як у небе так і на зямлі. " +
@@ -545,7 +545,9 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
-                            
+                            img1.HorizontalOptions = LayoutOptions.FillAndExpand;
+                            img1.VerticalOptions = LayoutOptions.Start;
+                            img1.Aspect = Aspect.Fill;                            
                             
                             
 
@@ -820,8 +822,8 @@ namespace HolyRosary
         async void ImageButton_Clicked(object b, EventArgs e)
         {
             string filename2;
-           // img1.VerticalOptions = LayoutOptions.Start;
-           // img1.HorizontalOptions = LayoutOptions.End;
+          // img1.VerticalOptions = LayoutOptions.FillAndExpand;
+          // img1.HorizontalOptions = LayoutOptions.Fill;
 
             if (Nexti < 9)
             {
