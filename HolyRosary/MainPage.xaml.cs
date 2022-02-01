@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.Timers;
+using Xamarin.Essentials;
 
 
 namespace HolyRosary
@@ -114,7 +115,9 @@ namespace HolyRosary
 
         public MainPage()
         {
-           
+            //инициализация параметров из сохраненных настроек приложения
+            Languare = int.Parse(Preferences.Get("Languare", "0"));
+            SliderValue = int.Parse(Preferences.Get("SliderValue", "20"));
             // изициализируем массив точек - центр бусинок
             roll[0, 0] = 6; roll[0, 1] = 33; roll[0, 2] = 1;
             roll[1, 0] = 6; roll[1, 1] = 30; roll[1, 2] = 2;

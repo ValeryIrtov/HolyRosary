@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace HolyRosary
 {
@@ -18,24 +19,29 @@ namespace HolyRosary
         public SettingPage()
         {
             InitializeComponent();
-            sliderRunLine.Value = V - MainPage.SliderValue;
+            //sliderRunLine.Value = V - MainPage.SliderValue;
+            sliderRunLine.Value = V - int.Parse(Preferences.Get("SliderValue","20"));
             pickerLanguare.SelectedIndex = MainPage.Languare;
+            
         }
         void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
         {
             double value = args.NewValue;
             MainPage.SliderValue = V - (int)value;
+            Preferences.Set("SliderValue", MainPage.SliderValue.ToString()); 
         }
         async void SetOKButton_Clicked(object b, EventArgs e)
         {
             if (pickerLanguare.SelectedIndex != MainPage.Languare)
             {
                 MainPage.Languare = pickerLanguare.SelectedIndex;
+                Preferences.Get("Languare", MainPage.Languare.ToString());
                 onCloseSetPage(pickerLanguare.SelectedIndex);
                //MainPage.setPrayLanguare(pickerLanguare.SelectedIndex);
             }
             double value = sliderRunLine.Value;
             MainPage.SliderValue = V - (int)value;
+            Preferences.Set("SliderValue", MainPage.SliderValue.ToString());
             
             await Navigation.PopModalAsync();
 
