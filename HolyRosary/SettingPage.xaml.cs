@@ -42,7 +42,6 @@ namespace HolyRosary
             double value = sliderRunLine.Value;
             MainPage.SliderValue = V - (int)value;
             Preferences.Set("SliderValue", MainPage.SliderValue.ToString());
-            
             await Navigation.PopModalAsync();
 
         }
