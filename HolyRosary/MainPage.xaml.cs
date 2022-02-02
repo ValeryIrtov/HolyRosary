@@ -24,7 +24,7 @@ namespace HolyRosary
         SKCanvas canvas, canvas2;
         int ci = 0; //счетчик бусинок
         bool NextPressed = false; //button Next is not pressing
-        int Nexti = 0; //счетчик нажатий
+        public static int Nexti = 0; //счетчик нажатий
         float cx = 0, cy = 0; //canvas size 
         float d = 0; // diametr
         //private static System.Timers.Timer prayTimer;
@@ -98,7 +98,7 @@ namespace HolyRosary
         static string pray6BY = "О Марыя, без граху першароднага зачатая, маліся за нас, хто ў Цябе паратунку шукае.";
         static string pray6 = "";
 
-        static string pray7RU = "О мой Иисус, прости нам наши прегрешения, избавь нас от огня адского и приведи все души на небо, особенно те, которые" +
+        static string pray7RU = "О мой Иисус, прости нам наши прегрешения, избавь нас от огня адского и приведи все души на небо, особенно те, которые " +
             " наиболее нуждаются в Твоем милосердии.";
         static string pray7BY = "О мой Езу, прабач нам грахі нашыя, захавай нас ад агню пякельнага, правядзі ўсе душы на неба і дапамажы асабліва тым, " +
             "каму найбольш патрэбна Твая міласэрнасць.";
@@ -117,7 +117,7 @@ namespace HolyRosary
         {
             //инициализация параметров из сохраненных настроек приложения
             Languare = int.Parse(Preferences.Get("Languare", "0"));
-            SliderValue = int.Parse(Preferences.Get("SliderValue", "20"));
+            SliderValue = int.Parse(Preferences.Get("SliderValue", "50"));
             // изициализируем массив точек - центр бусинок
             roll[0, 0] = 6; roll[0, 1] = 33; roll[0, 2] = 1;
             roll[1, 0] = 6; roll[1, 1] = 30; roll[1, 2] = 2;
@@ -296,6 +296,7 @@ namespace HolyRosary
         }
         private void OnPainting2(object sender, SKPaintSurfaceEventArgs e)
         {
+            //Рисует текст в бегущей строке
             // получаем текущую поверхность из аргументов
             surface2 = e.Surface;
             // Получаем холст на котором будет рисовать
@@ -449,7 +450,7 @@ namespace HolyRosary
             //img1.HorizontalOptions = LayoutOptions.Center;
             //img1.VerticalOptions = LayoutOptions.Center; 
             if (Nexti == 8) picker2.IsEnabled = true;
-            if ((APray3.Contains(Nexti)))
+            if (APray3.Contains(Nexti))
             {
                 cts = new CancellationTokenSource();
                 token = cts.Token;
@@ -665,7 +666,7 @@ namespace HolyRosary
                 cx = e.Info.Width;
                 cy = e.Info.Height;
 
-            if (!NextPressed & ci == 0) // Netx did not press
+            if (!NextPressed & ci == 0) // Netx did not pressed
             {
                 if (ci == 0)
                 {

@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using Xamarin.Essentials;
 
 namespace HolyRosary
 {
@@ -43,11 +44,37 @@ namespace HolyRosary
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            Preferences.Set("Nexti",HolyRosary.MainPage.Nexti.ToString());
+            Picker picker1 = MainPage.FindByName<Picker>("picker1");
+            Picker picker2 = MainPage.FindByName<Picker>("picker2");
+            Preferences.Set("Picker1", picker1.SelectedIndex.ToString());
+            Preferences.Set("Picker2", picker2.SelectedIndex.ToString());
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            HolyRosary.MainPage.Nexti = int.Parse(Preferences.Get("Nexti", "0"));
+            
+
+            Picker picker1 = MainPage.FindByName<Picker>("picker1");
+            Picker picker2 = MainPage.FindByName<Picker>("picker2");
+            picker1.SelectedIndex = int.Parse(Preferences.Get("Picker1", "0"));
+            picker2.SelectedIndex = int.Parse(Preferences.Get("Picker2", "0"));
+            ImageButton img1 = MainPage.FindByName<ImageButton>("img1");
+            if (HolyRosary.MainPage.Nexti > 7)
+            {
+                int pic1 = picker1.SelectedIndex + 1;
+                int pic2 = picker2.SelectedIndex + 1;
+                string filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
+                img1.Source = filename;
+            }
+            else {
+                img1.Source = "img1.jpg";
+            }
+            img1.HorizontalOptions = LayoutOptions.FillAndExpand;
+            img1.VerticalOptions = LayoutOptions.Start;
+            img1.Aspect = Aspect.Fill;
         }
         public int MysteryToDay()
         {

@@ -20,7 +20,7 @@ namespace HolyRosary
         {
             InitializeComponent();
             //sliderRunLine.Value = V - MainPage.SliderValue;
-            sliderRunLine.Value = V - int.Parse(Preferences.Get("SliderValue","20"));
+            sliderRunLine.Value = V - int.Parse(Preferences.Get("SliderValue","50"));
             pickerLanguare.SelectedIndex = MainPage.Languare;
             
         }
