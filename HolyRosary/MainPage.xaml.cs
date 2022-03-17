@@ -22,7 +22,7 @@ namespace HolyRosary
         //SKBitmap bitmap;
         SKSurface surface, surface2;
         SKCanvas canvas, canvas2;
-        int ci = 0; //счетчик бусинок
+        public static int ci = 0; //счетчик бусинок
         bool NextPressed = false; //button Next is not pressing
         public static int Nexti = 0; //счетчик нажатий
         float cx = 0, cy = 0; //canvas size 
@@ -116,7 +116,7 @@ namespace HolyRosary
         public MainPage()
         {
             //инициализация параметров из сохраненных настроек приложения
-            Languare = int.Parse(Preferences.Get("Languare", "0"));
+            Languare = int.Parse(Preferences.Get("Languare", "1"));
             SliderValue = int.Parse(Preferences.Get("SliderValue", "50"));
             // изициализируем массив точек - центр бусинок
             roll[0, 0] = 6; roll[0, 1] = 33; roll[0, 2] = 1;
@@ -436,6 +436,21 @@ namespace HolyRosary
             picker2.SelectedIndex = 0;
             if( Nexti < 8 ) picker2.IsEnabled = false;
         }
+        private void picker2_change(object sender, EventArgs e)
+        {
+            if (Nexti > 8)
+            {
+                switch (picker2.SelectedIndex)
+                {
+                    case 0: { Nexti = 8; ci = 4; } break;
+                    case 1: { Nexti = 23; ci = 15; } break;
+                    case 2: { Nexti = 38; ci = 26; } break;
+                    case 3: { Nexti = 53; ci = 37; } break;
+                    case 4: { Nexti = 68; ci = 48; } break;
+                }
+                canvasview.InvalidateSurface();
+            }
+        }
         private void Button1_Clicked(object b, EventArgs e)
         {
             
@@ -551,9 +566,10 @@ namespace HolyRosary
                             img1.Source = filename;
                             img1.HorizontalOptions = LayoutOptions.FillAndExpand;
                             img1.VerticalOptions = LayoutOptions.Start;
-                            img1.Aspect = Aspect.Fill;                            
-                            
-                            
+                            img1.Aspect = Aspect.Fill;
+                            //замена бегущей строки пробелами
+                            for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); }; 
+                            canvasview2.InvalidateSurface();
 
                             //runningLine(pray3);
                             canvasview.InvalidateSurface();
@@ -568,9 +584,8 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
-                            
-                            //cts.Cancel();
-                            // runningLine(pray3, token);
+                            for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
+                            canvasview2.InvalidateSurface();
                             canvasview.InvalidateSurface();
                             Nexti++;
 
@@ -583,6 +598,8 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
+                            for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
+                            canvasview2.InvalidateSurface();
                             //runningLine(pray3);
                             canvasview.InvalidateSurface();
                             Nexti++;
@@ -596,6 +613,8 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
+                            for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
+                            canvasview2.InvalidateSurface();
                             //img1.Source = "img14.jpg";
                             canvasview.InvalidateSurface();
                             Nexti++;
@@ -608,6 +627,8 @@ namespace HolyRosary
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
                             img1.Source = filename;
+                            for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
+                            canvasview2.InvalidateSurface();
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
@@ -658,33 +679,25 @@ namespace HolyRosary
 
             //Здесь можно рисовать
            
-                // получаем текущую поверхность из аргументов
-                surface = e.Surface;
-                // Получаем холст на котором будет рисовать
-                canvas = surface.Canvas;    
-                //var surfaceize = e.Info.Size;
-                cx = e.Info.Width;
-                cy = e.Info.Height;
-
-            if (!NextPressed & ci == 0) // Netx did not pressed
+            // получаем текущую поверхность из аргументов
+            surface = e.Surface;
+            // Получаем холст на котором будем рисовать
+            canvas = surface.Canvas;    
+            //var surfaceize = e.Info.Size;
+            cx = e.Info.Width;
+            cy = e.Info.Height;
+           // get radius d witch first running
+            if (Nexti == 0) //ci == 0) // Netx did not pressed
             {
-                if (ci == 0)
-                {
-                    d = 1 + (int)cx / 25;
-                    //r = (int) d / 2;
-                    // Очищаем холст
-                    //canvas.Clear(SKColors.AliceBlue);
-                    canvas.Clear(SKColors.AliceBlue);
-                    //canvas.Save();
-                }
-                else canvas.Restore();
+
+                d = 1 + (int)cx / 25;
+                canvas.Clear(SKColors.AliceBlue);
             }
-            else
-            if (Nexti == 1) //первый раз нажата Next
+            // there are drawing a rosary for something of start 
+            // croc
+            //кисть для медальона рисуем 2 раза
+            if (Nexti != 0)
             {
-                //canvas.Save();
-                //кисть для медальона рисуем 2 раза
-
                 var pathCroc = new SKPaint
                 {
                     IsAntialias = true,
@@ -714,7 +727,8 @@ namespace HolyRosary
                 path2.MoveTo(4 * d, 35 * d);
                 path2.LineTo(6 * d, 37 * d);
                 canvas.DrawPath(path2, pathCroc2);
-                //1
+                // end of croc
+                // 
                 var pathStroke = new SKPaint
                 {
                     IsAntialias = true,
@@ -725,9 +739,9 @@ namespace HolyRosary
                 // Рисуем путь розария
                 var path1 = new SKPath();
                 path1.MoveTo(6 * d, 35 * d);
-                for (int pi = 0; pi <=59; pi++)
+                for (int pi = 0; pi <= 59; pi++)
                 {
-                    path1.LineTo(roll[pi, 0] * d, roll[pi, 1] * d); 
+                    path1.LineTo(roll[pi, 0] * d, roll[pi, 1] * d);
                 }
                 canvas.DrawPath(path1, pathStroke);
 
@@ -739,14 +753,14 @@ namespace HolyRosary
                     else
                         canvas.DrawCircle(roll[i, 0] * d, roll[i, 1] * d, d + 1, circleFill2);
                 }
-                //canvas.Save();
-            }//END Nexti == 0
-            else
-            {
-                if (Nexti == 2)
+            }
+
+            if (NextPressed)
+            { 
+                if (Nexti == 2 || Nexti == 3 )
                 {
                     //canvas.Save();
-                    //рисуем контур медальона
+                    //рисуем контур медальона yellow
                     // Создаем путь
                     var pathCroc = new SKPaint
                     {
@@ -761,63 +775,30 @@ namespace HolyRosary
                     path.MoveTo(4 * d, 35 * d);
                     path.LineTo(6 * d, 37 * d);
                     canvas.DrawPath(path, pathCroc);
-
-                    
                 }
-                else 
-                {
-                    if (Nexti == 4)
-                    {
-                        var pathCroc = new SKPaint
-                        {
-                            IsAntialias = true,
-                            Style = SKPaintStyle.Stroke,
-                            Color = SKColors.Gray,
-                            StrokeWidth = 8
-                        };
-                        // Создаем путь
-                        var path = new SKPath();
-                        path.MoveTo(2 * d, 39 * d);
-                        path.LineTo(6 * d, 35 * d);
-                        path.MoveTo(4 * d, 35 * d);
-                        path.LineTo(6 * d, 37 * d);
-                        canvas.DrawPath(path, pathCroc);
-
-                        var pathCroc2 = new SKPaint
-                        {
-                            IsAntialias = true,
-                            Style = SKPaintStyle.Stroke,
-                            Color = SKColors.CornflowerBlue,
-                            StrokeWidth = 6
-                        };
-                        // Создаем путь
-                        var path2 = new SKPath();
-                        path2.MoveTo(2 * d, 39 * d);
-                        path2.LineTo(6 * d, 35 * d);
-                        path2.MoveTo(4 * d, 35 * d);
-                        path2.LineTo(6 * d, 37 * d);
-                        canvas.DrawPath(path2, pathCroc2);
-                        //1
-                    }
-                    if ( ci < 60 )
-                    {
+                  else if (Nexti !=1)
+                  {
+                      if ( ci < 60 )
+                      {
                         // canvas.Restore();
-                        var Nexiarray = new[] { 3, 9, 10, 22, 23, 24, 25, 37, 38, 39, 40, 52, 53, 54, 55, 67, 68, 69, 70 };
-                        // bool contains = Array.TrueForAll(Nexiarray, Nexti)
-                        if (!Nexiarray.Contains(Nexti))//на больших бусинках ci не увеличиваем, 
-                        {
                             if (ci > 0)
                             {
                                 if (roll[ci - 1, 2] == 2) canvas.DrawOval(roll[ci - 1, 0] * d, roll[ci - 1, 1] * d, d, d, circleFill);
                                 else canvas.DrawOval(roll[ci - 1, 0] * d, roll[ci - 1, 1] * d, d, d, circleFill2);
                             }
-                                canvas.DrawOval(roll[ci, 0] * d, roll[ci, 1] * d, d, d, circleFill3);
+                            canvas.DrawOval(roll[ci, 0] * d, roll[ci, 1] * d, d, d, circleFill3); 
+                        var Nexiarray = new[] { 3, 8, 9, 21, 22, 23, 24, 36, 37, 38, 39, 51, 52, 53, 54, 66, 67, 68, 69, 81, 82, 83, 84 };
+                        // bool contains = Array.TrueForAll(Nexiarray, Nexti)
+                        if (!Nexiarray.Contains(Nexti))//на больших бусинках ci не увеличиваем, 
+                        {                              
                             ci++;
                         }
-                    }
                         
-                }
+                      }
+                        
+                  }
 
+                
             }
             NextPressed = false;
             canvas.Save();

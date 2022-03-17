@@ -25,8 +25,8 @@
      
         <Picker x:Name="picker1" SelectedIndexChanged="picker1_change"> 
         </Picker>
-           
-        <Picker x:Name="picker2" VerticalOptions="CenterAndExpand" >
+
+        <Picker x:Name="picker2" VerticalOptions="CenterAndExpand" SelectedIndexChanged="picker2_change" >
         </Picker>
 
         <Grid x:Name="Grid1" RowSpacing="2">

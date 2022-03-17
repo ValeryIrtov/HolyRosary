@@ -45,6 +45,7 @@ namespace HolyRosary
         {
             // Handle when your app sleeps
             Preferences.Set("Nexti",HolyRosary.MainPage.Nexti.ToString());
+            Preferences.Set("ci", HolyRosary.MainPage.ci.ToString());
             Picker picker1 = MainPage.FindByName<Picker>("picker1");
             Picker picker2 = MainPage.FindByName<Picker>("picker2");
             Preferences.Set("Picker1", picker1.SelectedIndex.ToString());
@@ -55,7 +56,7 @@ namespace HolyRosary
         {
             // Handle when your app resumes
             HolyRosary.MainPage.Nexti = int.Parse(Preferences.Get("Nexti", "0"));
-            
+            HolyRosary.MainPage.ci = int.Parse(Preferences.Get("ci", "0"));
 
             Picker picker1 = MainPage.FindByName<Picker>("picker1");
             Picker picker2 = MainPage.FindByName<Picker>("picker2");

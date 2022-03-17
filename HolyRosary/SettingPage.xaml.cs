@@ -19,8 +19,8 @@ namespace HolyRosary
         public SettingPage()
         {
             InitializeComponent();
-            //sliderRunLine.Value = V - MainPage.SliderValue;
-            sliderRunLine.Value = V - int.Parse(Preferences.Get("SliderValue","50"));
+            sliderRunLine.Value = V - MainPage.SliderValue;
+            //sliderRunLine.Value = V - int.Parse(Preferences.Get("SliderValue","50"));
             pickerLanguare.SelectedIndex = MainPage.Languare;
             
         }
