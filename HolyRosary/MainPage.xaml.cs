@@ -12,6 +12,8 @@ using System.Timers;
 using Xamarin.Essentials;
 
 
+
+
 namespace HolyRosary
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -26,7 +28,7 @@ namespace HolyRosary
         bool NextPressed = false; //button Next is not pressing
         public static int Nexti = 0; //счетчик нажатий
         float cx = 0, cy = 0; //canvas size 
-        float d = 0; // diametr
+        public static float d = 0; // diametr
         //private static System.Timers.Timer prayTimer;
         public int[,] roll = new int[60, 3];
         public int currentsymbol = 0; //счетчик в тексте молитвы
@@ -506,6 +508,9 @@ namespace HolyRosary
                             cts = new CancellationTokenSource();
                             token = cts.Token;
                             runningLine(pray1, token);
+                     //       var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                     //       player.Load("pray1.mp3");
+                     //       player.Play();
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
@@ -800,6 +805,7 @@ namespace HolyRosary
 
                 
             }
+           
             NextPressed = false;
             canvas.Save();
         }
