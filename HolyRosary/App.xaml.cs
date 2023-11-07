@@ -14,7 +14,6 @@ namespace HolyRosary
             InitializeComponent();
 
             MainPage = new MainPage();
-            
                       
         }
 

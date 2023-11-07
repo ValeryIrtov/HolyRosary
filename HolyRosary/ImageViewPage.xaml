@@ -5,12 +5,20 @@
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="ImageLabel"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"   
+                FontSize="Medium"   />
             <ImageButton  x:Name="ImgViewButton"  Clicked="ButtonOKClicked" 
                           VerticalOptions="StartAndExpand" 
                           HorizontalOptions="CenterAndExpand" BackgroundColor="White">  
             </ImageButton>
+            <Label x:Name="LabelPray"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                FontSize="Medium"   
+                HorizontalTextAlignment="Center"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

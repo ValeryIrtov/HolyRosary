@@ -23,10 +23,10 @@
         </StackLayout>
         <!-- Place new controls here -->
      
-        <Picker x:Name="picker1" SelectedIndexChanged="picker1_change"> 
+        <Picker x:Name="picker1" SelectedIndexChanged="Picker1_change"> 
         </Picker>
 
-        <Picker x:Name="picker2" VerticalOptions="CenterAndExpand" SelectedIndexChanged="picker2_change" >
+        <Picker x:Name="picker2" VerticalOptions="CenterAndExpand" SelectedIndexChanged="Picker2_change" >
         </Picker>
 
         <Grid x:Name="Grid1" RowSpacing="2">
@@ -37,25 +37,27 @@
             <!--<BoxView x:Name="BoxView1"  Color="Red" Grid.Column="0" Grid.Row="0" /> -->
             <views:SKCanvasView x:Name="canvasview" PaintSurface="OnPainting" />
             <!--BoxView x:Name ="BoxViev1" Grid.Column="1" Grid.Row="0" Color="AliceBlue"/> -->
-            <ImageButton x:Name="img1"
+            <ImageButton x:Name="imgButton1"
                          Source="img1.jpg" 
                          Grid.Column="1" Grid.Row="0" 
-                         Clicked="ImageButton_Clicked" 
+                         Clicked="ImageButton_Clicked"
+                         Pressed="ImageButton_Pressed"
                          BackgroundColor="AliceBlue"
-                         HorizontalOptions="FillAndExpand"
+                         HorizontalOptions="StartAndExpand"
                          VerticalOptions="Start"
-                         BorderWidth="3"
+                         BorderWidth="1"
                          Aspect="AspectFit"
-                        />
+                         >
+            </ImageButton>
          </Grid>
-           
-
- <!--<Label x:Name="Label1" Text="" 
-           HorizontalOptions="Start"
-           VerticalOptions="Start" />-->
+ 
 <views:SKCanvasView x:Name = "canvasview2"  HorizontalOptions = "FillAndExpand" PaintSurface = "OnPainting2" />
         
-<Button x:Name ="Button1" Text=">>" VerticalOptions="End" Clicked="Button1_Clicked"  />
+<Button x:Name ="Button1" 
+        Text=">>" 
+        VerticalOptions="End"
+        FontSize="Large"
+        Clicked="Button1_Clicked"  />
 
 
 

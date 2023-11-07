@@ -4,20 +4,38 @@
              x:Class="HolyRosary.SettingPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Настройки" FontSize="Medium" ></Label>
-            <Label Text="Бягучы радок" FontSize="Small" ></Label>
+            <Label x:Name="Setting" Text="Усталяванні" FontSize="Medium" ></Label>
+            <Label x:Name="RunningSrting" Text="Бягучы радок" FontSize="Small" ></Label>
 
-            <Slider x:Name="sliderRunLine" Maximum="200"></Slider>
+            <Slider x:Name="sliderRunLine" 
+                    Maximum="200" 
+                    BackgroundColor="Gray" 
+                    MaximumTrackColor="Black"
+                    MinimumTrackColor="DarkGray"
+                    ThumbColor="White">
+            </Slider>
             <Label Text="Выберите язык / Выберыце мову" FontSize="Medium"></Label>
                 
-            <Picker x:Name="pickerLanguare" SelectedIndex="1" FontSize="Large">
+            <Picker x:Name="pickerLanguare" 
+                    SelectedIndex="1" 
+                    FontSize="Large" 
+                    SelectedIndexChanged="OnLanguareChanged">
                 <Picker.Items>
                     <x:String>RU (Русский)</x:String>
                     <x:String>BY (Беларуская)</x:String>
                 </Picker.Items>
             </Picker>
             <Button x:Name="SetOKButton" Text="OK" VerticalOptions="End" Clicked="SetOKButton_Clicked" />
-            <Label Text="bsuir.valery.irtov@gmail.com" FontSize="Small" VerticalOptions="End"> </Label>
+            <StackLayout VerticalOptions="EndAndExpand">
+                
+            <Button x:Name="SendMailButton" 
+                    Text="Распрацоўка: rosary.valery.irtov@gmail.com" 
+                    FontSize="Default" 
+                    VerticalOptions="End"
+                    Clicked="SendMailCommand" >
+            </Button>
+            </StackLayout>
+           
         </StackLayout>
-    </ContentPage.Content>
+     </ContentPage.Content>
 </ContentPage>

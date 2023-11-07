@@ -27,7 +27,7 @@ namespace HolyRosary
         public static int ci = 0; //счетчик бусинок
         bool NextPressed = false; //button Next is not pressing
         public static int Nexti = 0; //счетчик нажатий
-        float cx = 0, cy = 0; //canvas size 
+        float cx = 0, cy = 0;  //canvas size
         public static float d = 0; // diametr
         //private static System.Timers.Timer prayTimer;
         public int[,] roll = new int[60, 3];
@@ -67,7 +67,7 @@ namespace HolyRosary
         static string pray1RU = "Во имя Отца и Сына и Святого Духа. Аминь. ";
         static string pray1BY = "У імя Айца і Сына, і Духа Святога. Амэн. ";
         static string pray1 = "";
-
+        static string CurrentPray = ""; //текущий текст для отправки в просмотр  ImageViewPage
         static string pray2RU = "Я верю в Бога, Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единого Его Сына, Господа нашего, " +
             " который был зачат от Духа Святого, родился от Девы Марии, страдал при Понтии Пилате, был распят, умер и погребён; сошел в ад;" +
             " в третий день воскрес из мертвых, восшел на небеса и сидит одесную Бога, Отца Всемогущего, оттуда придет судить живых и мертвых." +
@@ -223,7 +223,7 @@ namespace HolyRosary
             
 
         }
-        public void setPrayLanguare(int LanguareP)
+        public void SetPrayLanguare(int LanguareP)
         {
             // сохранить выбранное таинство
             int currentTile = picker1.SelectedIndex;
@@ -266,7 +266,7 @@ namespace HolyRosary
             
         }
 
-        async void runningLine(string pray, CancellationToken token)
+        async void RunningLine(string pray, CancellationToken token)
         {
              
             int L = (int)(2.3 * x2 / y2); //подбираем число символов по размеру поля
@@ -322,7 +322,7 @@ namespace HolyRosary
             canvas2.DrawText(new string(tmp), 0, (int)(y2-y2*0.1), textPaint);
            
         }
-        private void picker1_change(object sender, EventArgs e)
+        private void Picker1_change(object sender, EventArgs e)
         {
             //удалить старые записи, если они есть
             while (picker2.Items.Count != 0)
@@ -438,7 +438,7 @@ namespace HolyRosary
             picker2.SelectedIndex = 0;
             if( Nexti < 8 ) picker2.IsEnabled = false;
         }
-        private void picker2_change(object sender, EventArgs e)
+        private void Picker2_change(object sender, EventArgs e)
         {
             if (Nexti > 8)
             {
@@ -454,7 +454,7 @@ namespace HolyRosary
             }
         }
         private void Button1_Clicked(object b, EventArgs e)
-        {
+        { 
             
             cts.Cancel();
             NextPressed = true;
@@ -465,38 +465,43 @@ namespace HolyRosary
             var APray6 = new[] { 21, 36, 51, 66, 81};
             var APray7 = new[] { 22, 37, 52, 67, 82};
             //img1.HorizontalOptions = LayoutOptions.Center;
-            //img1.VerticalOptions = LayoutOptions.Center; 
+            //img1.VerticalOptions = LayoutOptions.Center;
+            //imgButton1.Aspect = Aspect.AspectFit;
             if (Nexti == 8) picker2.IsEnabled = true;
             if (APray3.Contains(Nexti))
             {
+                CurrentPray = pray3;
                 cts = new CancellationTokenSource();
                 token = cts.Token;
-                runningLine(pray3, token);
+                RunningLine(pray3, token);
                 canvasview.InvalidateSurface();
                 Nexti++;
             }
             else if (APray5.Contains(Nexti))
             {
+                CurrentPray = pray5;
                 cts = new CancellationTokenSource();
                 token = cts.Token;
-                runningLine(pray5, token);
+                RunningLine(pray5, token);
                 canvasview.InvalidateSurface();
                 Nexti++;
             }
             else
                 if (APray6.Contains(Nexti))
             {
+                CurrentPray = pray6;
                 cts = new CancellationTokenSource();
                 token = cts.Token;
-                runningLine(pray6, token);
+                RunningLine(pray6, token);
                 canvasview.InvalidateSurface();
                 Nexti++;
             }
             else if (APray7.Contains(Nexti))
             {
+                CurrentPray = pray7;
                 cts = new CancellationTokenSource();
                 token = cts.Token;
-                runningLine(pray7, token);
+                RunningLine(pray7, token);
                 canvasview.InvalidateSurface();
                 Nexti++;
             }
@@ -505,9 +510,10 @@ namespace HolyRosary
                 {
                     case 1:
                         {
+                            CurrentPray = pray1;
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray1, token);
+                            RunningLine(pray1, token);
                      //       var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
                      //       player.Load("pray1.mp3");
                      //       player.Play();
@@ -517,28 +523,31 @@ namespace HolyRosary
                         break;
                     case 2:
                         {
+                            CurrentPray = pray2;
                             //Label1.Text = pray2;
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray2, token);
+                            RunningLine(pray2, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
                         break;
                     case 3:
                         {
+                            CurrentPray = pray3;
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray3, token);
+                            RunningLine(pray3, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
                         break;
                     case 4:
                         {
+                            CurrentPray = pray4;
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray4, token);
+                            RunningLine(pray4, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
@@ -547,16 +556,17 @@ namespace HolyRosary
                         {
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray4, token);
+                            RunningLine(pray4, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
                         break;
                     case 6:
                         {
+                            CurrentPray = pray4;
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray4, token);
+                            RunningLine(pray4, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
@@ -568,10 +578,11 @@ namespace HolyRosary
                             pic1 = picker1.SelectedIndex + 1;
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                            img1.Source = filename;
-                            img1.HorizontalOptions = LayoutOptions.FillAndExpand;
-                            img1.VerticalOptions = LayoutOptions.Start;
-                            img1.Aspect = Aspect.Fill;
+                            imgButton1.Source = filename;
+                            //img1.HorizontalOptions = LayoutOptions.FillAndExpand;
+                            //img1.VerticalOptions = LayoutOptions.Start;
+                            //img1.Aspect = Aspect.Fill;
+                            imgButton1.Aspect = Aspect.AspectFit;
                             //замена бегущей строки пробелами
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); }; 
                             canvasview2.InvalidateSurface();
@@ -588,7 +599,7 @@ namespace HolyRosary
                             pic1 = picker1.SelectedIndex + 1;
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                            img1.Source = filename;
+                            imgButton1.Source = filename;
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
                             canvasview2.InvalidateSurface();
                             canvasview.InvalidateSurface();
@@ -602,7 +613,7 @@ namespace HolyRosary
                             pic1 = picker1.SelectedIndex + 1;
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                            img1.Source = filename;
+                            imgButton1.Source = filename;
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
                             canvasview2.InvalidateSurface();
                             //runningLine(pray3);
@@ -617,7 +628,7 @@ namespace HolyRosary
                             pic1 = picker1.SelectedIndex + 1;
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                            img1.Source = filename;
+                            imgButton1.Source = filename;
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
                             canvasview2.InvalidateSurface();
                             //img1.Source = "img14.jpg";
@@ -631,7 +642,7 @@ namespace HolyRosary
                             pic1 = picker1.SelectedIndex + 1;
                             pic2 = picker2.SelectedIndex + 1;
                             filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                            img1.Source = filename;
+                            imgButton1.Source = filename;
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
                             canvasview2.InvalidateSurface();
                             canvasview.InvalidateSurface();
@@ -640,11 +651,12 @@ namespace HolyRosary
                         break;
                     case 83:
                         {
-                            img1.Source = "pray8.jpg";
+                            CurrentPray = pray8;
+                            imgButton1.Source = "pray8.jpg";
                             //cts.Cancel();
                             cts = new CancellationTokenSource();
                             token = cts.Token;
-                            runningLine(pray8, token);
+                            RunningLine(pray8, token);
                             canvasview.InvalidateSurface();
                             Nexti++;
                         }
@@ -652,12 +664,20 @@ namespace HolyRosary
 
                     default:
                         {
+                            if (Nexti == 85)
+                            {
+                                try
+                                {
+                                    System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                                }
+                                catch (Exception errExit){ DisplayAlert("Error", errExit.Message, "OK"); };
+                            }
                             if (Nexti != 0 & Nexti != 8 & Nexti != 23 & Nexti != 38 & Nexti != 53 & Nexti != 68)
                             {
-                                //cts.Cancel();
+                                CurrentPray = pray4;
                                 cts = new CancellationTokenSource();
                                 token = cts.Token;
-                                runningLine(pray4, token);
+                                RunningLine(pray4, token);
                             }
                             canvasview.InvalidateSurface();
                             Nexti++;
@@ -673,10 +693,10 @@ namespace HolyRosary
         {
             int oldLanguare = Languare;
             SettingPage setPage = new SettingPage();
-            setPage.onCloseSetPage += setPrayLanguare;
+            setPage.onCloseSetPage += SetPrayLanguare;
             await Navigation.PushModalAsync(setPage);
             if (oldLanguare != Languare)
-                setPrayLanguare(Languare);
+                SetPrayLanguare(Languare);
         }
 
         private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
@@ -813,34 +833,51 @@ namespace HolyRosary
         async void ImageButton_Clicked(object b, EventArgs e)
         {
             string filename2;
-          // img1.VerticalOptions = LayoutOptions.FillAndExpand;
-          // img1.HorizontalOptions = LayoutOptions.Fill;
+            //imgButton1.VerticalOptions = LayoutOptions.Start;
+            //imgButton1.HorizontalOptions = LayoutOptions.StartAndExpand;
+            //imgButton1.Aspect = Aspect.AspectFit;
+            
 
             if (Nexti < 9)
             {
                 filename2 = "img1.jpg";
-                ImageViewPage ImagePage = new ImageViewPage(filename2, picker1.SelectedItem.ToString());
+                ImageViewPage ImagePage = new ImageViewPage(filename2, picker1.SelectedItem.ToString(),CurrentPray);
                 await Navigation.PushModalAsync(ImagePage);
             }
             else
-            if (Nexti < 83)
+            if (Nexti < 84)
             {
                 int pic1 = picker1.SelectedIndex + 1;
                 int pic2 = picker2.SelectedIndex + 1;
                 filename2 = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                ImageViewPage ImagePage = new ImageViewPage(filename2, picker2.SelectedItem.ToString());
+               
+                ImageViewPage ImagePage = new ImageViewPage(filename2, picker2.SelectedItem.ToString(), CurrentPray);
                 await Navigation.PushModalAsync(ImagePage);
             }
             else
             {
                 filename2 = "pray8.jpg";
-                ImageViewPage ImagePage = new ImageViewPage(filename2, picker1.SelectedItem.ToString());
+                ImageViewPage ImagePage = new ImageViewPage(filename2, picker1.SelectedItem.ToString(), CurrentPray);
                 await Navigation.PushModalAsync(ImagePage);
             }
-           
+            
+            imgButton1.Source = filename2;
+            imgButton1.VerticalOptions = LayoutOptions.Start;
+            imgButton1.HorizontalOptions = LayoutOptions.StartAndExpand;
+            imgButton1.Aspect = Aspect.AspectFit;
+            //imgButton1.Scale = 1;
+            //canvasview.InvalidateSurface();
+        }
+        void ImageButton_Pressed(object b, EventArgs e)
+        {
+            imgButton1.Scale = 1;
+            imgButton1.VerticalOptions = LayoutOptions.Start;
+            imgButton1.HorizontalOptions = LayoutOptions.Center;
+            imgButton1.Aspect = Aspect.AspectFill;
             
         }
-       
+
+
 
     }
 

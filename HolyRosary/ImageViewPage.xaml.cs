@@ -12,16 +12,17 @@ namespace HolyRosary
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImageViewPage : ContentPage
     {
-        public ImageViewPage(string fileName, string ImageLabeltxt)
+        public ImageViewPage(string fileName, string ImageLabeltxt, string labelPrayText)
         {
             InitializeComponent();
             ImgViewButton.Source = fileName;
             ImageLabel.Text = ImageLabeltxt;
+            LabelPray.Text = labelPrayText;
         }
         async void ButtonOKClicked(object b, EventArgs e)
         {
+            
             await Navigation.PopModalAsync();
-
         }
     }
 }
