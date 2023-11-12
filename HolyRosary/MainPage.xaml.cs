@@ -114,6 +114,13 @@ namespace HolyRosary
             "сваім нас паяднай, Сыну свайму нас даручай, Сыну свайму нас аддавай.";
         static string pray8 = "";
 
+        static string quitBY = "РУЖАНЕЦ ЗАВЕРШАН";
+
+        static string quitQuestBY = "Закрыць аплікацыю?";
+        public static string quitApp = quitBY;
+        static string quitRU = "РОЗАРИЙ ЗАВЕРШЁН";
+        static string quitQuestRU = "Закрыть приложение?";
+        public static string quitQuest = quitQuestBY;
 
         public MainPage()
         {
@@ -240,6 +247,8 @@ namespace HolyRosary
                 pray6 = pray6BY;
                 pray7 = pray7BY;
                 pray8 = pray8BY;
+                quitApp = quitBY;
+                quitQuest = quitQuestBY;
                 picker1.Items.Add("Хвалебныя таямніцы");
                 picker1.Items.Add("Радасныя таямніцы");
                 picker1.Items.Add("Балесныя таямніцы");
@@ -256,6 +265,8 @@ namespace HolyRosary
                 pray6 = pray6RU;
                 pray7 = pray7RU;
                 pray8 = pray8RU;
+                quitApp = quitRU;
+                quitQuest = quitQuestRU;
                 picker1.Items.Add("Тайны славные");
                 picker1.Items.Add("Тайны радостные");
                 picker1.Items.Add("Тайны скорбные");
@@ -453,7 +464,7 @@ namespace HolyRosary
                 canvasview.InvalidateSurface();
             }
         }
-        private void Button1_Clicked(object b, EventArgs e)
+        private async void Button1_Clicked(object b, EventArgs e)
         { 
             
             cts.Cancel();
@@ -586,7 +597,7 @@ namespace HolyRosary
                             //замена бегущей строки пробелами
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); }; 
                             canvasview2.InvalidateSurface();
-
+                            CurrentPray = "";
                             //runningLine(pray3);
                             canvasview.InvalidateSurface();
                             Nexti++;
@@ -603,6 +614,7 @@ namespace HolyRosary
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
                             canvasview2.InvalidateSurface();
                             canvasview.InvalidateSurface();
+                            CurrentPray = "";
                             Nexti++;
 
                         }
@@ -618,6 +630,7 @@ namespace HolyRosary
                             canvasview2.InvalidateSurface();
                             //runningLine(pray3);
                             canvasview.InvalidateSurface();
+                            CurrentPray = "";
                             Nexti++;
 
                         }
@@ -633,6 +646,7 @@ namespace HolyRosary
                             canvasview2.InvalidateSurface();
                             //img1.Source = "img14.jpg";
                             canvasview.InvalidateSurface();
+                            CurrentPray = "";
                             Nexti++;
                         }
                         break;
@@ -646,6 +660,7 @@ namespace HolyRosary
                             for (int n = 0; n < tmp.Length; n++) { tmp.SetValue(' ', n); };
                             canvasview2.InvalidateSurface();
                             canvasview.InvalidateSurface();
+                            CurrentPray = "";
                             Nexti++;
                         }
                         break;
@@ -664,13 +679,15 @@ namespace HolyRosary
 
                     default:
                         {
-                            if (Nexti == 85)
+                            if (Nexti >= 85) //85 exit 
                             {
+                                bool resquit = await DisplayAlert(quitApp, quitQuest, "Yes", "No");
+                                if (resquit)
                                 try
                                 {
                                     System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
                                 }
-                                catch (Exception errExit){ DisplayAlert("Error", errExit.Message, "OK"); };
+                                catch (Exception errExit){ await DisplayAlert("Error", errExit.Message, "OK"); };
                             }
                             if (Nexti != 0 & Nexti != 8 & Nexti != 23 & Nexti != 38 & Nexti != 53 & Nexti != 68)
                             {
@@ -693,7 +710,7 @@ namespace HolyRosary
         {
             int oldLanguare = Languare;
             SettingPage setPage = new SettingPage();
-            setPage.onCloseSetPage += SetPrayLanguare;
+            setPage.OnCloseSetPage += SetPrayLanguare;
             await Navigation.PushModalAsync(setPage);
             if (oldLanguare != Languare)
                 SetPrayLanguare(Languare);

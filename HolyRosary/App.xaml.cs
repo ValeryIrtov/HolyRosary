@@ -27,6 +27,7 @@ namespace HolyRosary
             picker1.Items.Add("Балесныя таямніцы");
             picker1.Items.Add("Таямніцы святла"); 
             picker1.SelectedIndex = MysteryToDay();
+            
 
             switch (picker1.SelectedIndex)
             {
@@ -50,6 +51,8 @@ namespace HolyRosary
             Picker picker2 = MainPage.FindByName<Picker>("picker2");
             Preferences.Set("Picker1", picker1.SelectedIndex.ToString());
             Preferences.Set("Picker2", picker2.SelectedIndex.ToString());
+            Preferences.Set("quitApp", HolyRosary.MainPage.quitApp);
+            Preferences.Set("quitQuest", HolyRosary.MainPage.quitQuest);
         }
 
         protected override void OnResume()
@@ -58,6 +61,8 @@ namespace HolyRosary
             HolyRosary.MainPage.Nexti = int.Parse(Preferences.Get("Nexti", "0"));
             HolyRosary.MainPage.ci = int.Parse(Preferences.Get("ci", "0"));
             HolyRosary.MainPage.d = float.Parse(Preferences.Get("d", "0"));
+            HolyRosary.MainPage.quitApp = Preferences.Get("quitApp", "РУЖАНЕЦ ЗАВЕРШАНЫ");
+            HolyRosary.MainPage.quitQuest = Preferences.Get("quitQuest", "Закрыць аплікацыю?");
             Picker picker1 = MainPage.FindByName<Picker>("picker1");
             Picker picker2 = MainPage.FindByName<Picker>("picker2");
             picker1.SelectedIndex = int.Parse(Preferences.Get("Picker1", "0"));

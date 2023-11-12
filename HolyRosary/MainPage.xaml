@@ -12,9 +12,19 @@
              x:Class="HolyRosary.MainPage">
 
     <StackLayout x:Name="StackLayoutPic">
-        <StackLayout x:Name="stackLayout2" Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="LightBlue">
-           <Label x:Name="Header" Text="СВЯТЫ РУЖАНЕЦ" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Large" HorizontalTextAlignment="Start" 
-                  VerticalTextAlignment="Center"/>
+        <StackLayout x:Name="stackLayout2" 
+                     Orientation="Horizontal" 
+                     HorizontalOptions="Fill" 
+                     BackgroundColor="LightBlue"
+                     Padding="5">
+           <Label x:Name="Header" 
+                  Text="СВЯТЫ РУЖАНЕЦ" 
+                  HorizontalOptions="StartAndExpand" 
+                  VerticalOptions="Center" 
+                  FontSize="Large" 
+                  HorizontalTextAlignment="Start" 
+                  VerticalTextAlignment="Center"
+                  />
             <ImageButton x:Name="setingButton" 
                          Source="Setimg.png" 
                          HorizontalOptions="Start"
@@ -29,7 +39,7 @@
         <Picker x:Name="picker2" VerticalOptions="CenterAndExpand" SelectedIndexChanged="Picker2_change" >
         </Picker>
 
-        <Grid x:Name="Grid1" RowSpacing="2">
+        <Grid x:Name="Grid1" RowSpacing="2" BackgroundColor="AliceBlue">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition/>

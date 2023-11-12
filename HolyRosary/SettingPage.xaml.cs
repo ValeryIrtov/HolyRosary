@@ -18,7 +18,7 @@ namespace HolyRosary
     {
         private const int V = 200;
         public delegate void SendLanguare(int L);
-        public event SendLanguare onCloseSetPage;
+        public event SendLanguare OnCloseSetPage;
         private int CurrentLanguare;
 
 
@@ -49,7 +49,7 @@ namespace HolyRosary
                     await Email.ComposeAsync(message);
                 }
                 catch (Exception ex) 
-                { await DisplayAlert("Error", "Памылка запуску пачтовай прграммы: " + ex.ToString(), "OK"); }
+                { await DisplayAlert("Error", "Памылка запуску пачтовай праграмы: " + ex.ToString(), "OK"); }
             }
         }
                 
@@ -65,7 +65,7 @@ namespace HolyRosary
             {
                 MainPage.Languare = pickerLanguare.SelectedIndex;
                 Preferences.Get("Languare", MainPage.Languare.ToString());
-                onCloseSetPage(pickerLanguare.SelectedIndex);
+                OnCloseSetPage(pickerLanguare.SelectedIndex);
                 //Setting.Text = "Настройки";
                 //RunningSrting.Text = "Бегущая строка";
                 //SendMailButton.Text = "Разработка: rosary.valery.irtov@gmail.com";
