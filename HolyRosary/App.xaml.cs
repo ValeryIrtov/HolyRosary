@@ -67,20 +67,21 @@ namespace HolyRosary
             Picker picker2 = MainPage.FindByName<Picker>("picker2");
             picker1.SelectedIndex = int.Parse(Preferences.Get("Picker1", "0"));
             picker2.SelectedIndex = int.Parse(Preferences.Get("Picker2", "0"));
-            ImageButton img1 = MainPage.FindByName<ImageButton>("img1");
+            ImageButton imgButton1 = MainPage.FindByName<ImageButton>("imgButton1");
             if (HolyRosary.MainPage.Nexti > 7)
             {
                 int pic1 = picker1.SelectedIndex + 1;
                 int pic2 = picker2.SelectedIndex + 1;
                 string filename = String.Concat("img", pic1.ToString(), pic2.ToString(), ".jpg");
-                img1.Source = filename;
+                imgButton1.Source = filename;
             }
-            else {
-                img1.Source = "img1.jpg";
+            else
+            {
+                imgButton1.Source = "img1.jpg";
             }
-            img1.HorizontalOptions = LayoutOptions.FillAndExpand;
-            img1.VerticalOptions = LayoutOptions.Start;
-            img1.Aspect = Aspect.Fill;
+            imgButton1.HorizontalOptions = LayoutOptions.StartAndExpand;
+            imgButton1.VerticalOptions = LayoutOptions.Start;
+            imgButton1.Aspect = Aspect.AspectFit;
         }
         public int MysteryToDay()
         {

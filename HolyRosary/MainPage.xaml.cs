@@ -890,8 +890,10 @@ namespace HolyRosary
             imgButton1.Scale = 1;
             imgButton1.VerticalOptions = LayoutOptions.Start;
             imgButton1.HorizontalOptions = LayoutOptions.Center;
+            //imgButton1.HorizontalOptions = LayoutOptions.StartAndExpand;
             imgButton1.Aspect = Aspect.AspectFill;
-            
+            //imgButton1.Aspect = Aspect.AspectFit;
+
         }
 
 
