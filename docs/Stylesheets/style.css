@@ -24,15 +24,19 @@
                 color: black;
             }
             #main{
-                margin-top: -30px;
-            }
-            #footer{
                 position: absolute;
                 top: 50px;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 text-align: center;
-                margin-top: 80%;
-                color: red;
+                margin-top: 30px;
+                color: black;
+            }
+            #footer{
+                position: absolute;
+                top: 80%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                text-align: center;
 
             }
