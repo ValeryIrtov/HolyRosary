@@ -16,7 +16,7 @@
             }
             #sidebar{
                 position: absolute;
-                top: 50px;
+                top: 10%;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 text-align: center;
@@ -25,18 +25,18 @@
             }
             #main{
                 position: absolute;
-                top: 50px;
+                top: 20%;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
-                text-align: center;
-                margin-top: 30px;
-                color: black;
+
             }
             #footer{
                 position: absolute;
-                top: 80%;
+                top: 90%;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 text-align: center;
+
+                color: red;
 
             }
