@@ -11,21 +11,22 @@
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 text-align: center;
-                font-size: 50px;
+                font-size: 5vw;
                 color: blue;
             }
             #sidebar{
                 position: absolute;
-                top: 10%;
+                top: 15%;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 text-align: center;
+                font-size: 3vw;
                 margin-top: 30px;
                 color: black;
             }
             #main{
                 position: absolute;
-                top: 20%;
+                top: 30%;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
 
@@ -36,7 +37,7 @@
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 text-align: center;
-
+                font-size: 3vw;
                 color: red;
 
             }
