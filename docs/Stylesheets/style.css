@@ -2,13 +2,13 @@
 
             }
             #header{
-
+              text-align: center;
               font-size: 7vw;
               color: blue;
             }
             #sidebar{
-
-              font-size: 5vw;
+              text-align: center;
+              font-size: 4vw;
               color: grey;
 
             }
@@ -19,6 +19,7 @@
 
             }
             #futher{
-
+               text-align: center;
+               font-size: 5vw;
             }
             }
